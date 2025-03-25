@@ -186,6 +186,12 @@ h1 {
   font-size: 14px;
 }
 
+.form-group input[type="color"] {
+  padding: 3px;
+  height: 40px;
+  cursor: pointer;
+}
+
 .output {
   margin-top: 20px;
 }
