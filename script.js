@@ -144,6 +144,30 @@ document.addEventListener("DOMContentLoaded", () => {
             <input type="color" id="navbarTextColor" value="#ffffff">
           </div>
         `;
+      case "button":
+        return `
+              <div class="form-group">
+                <label for="className">Class Name:</label>
+                <input type="text" id="className" value="${defaultClassName}">
+              </div>
+
+              <div class="form-group">
+              <label for="buttonText">Button Text:</label>
+              <input type="text" id="buttonText" placeholder="e.g., Click Me">
+            </div>
+            <div class="form-group">
+              <label for="buttonBgColor">Button Background Color:</label>
+              <input type="color" id="buttonBgColor" value="#007bff">
+            </div>
+            <div class="form-group">
+              <label for="buttonTextColor">Button Text Color:</label>
+              <input type="color" id="buttonTextColor" value="#ffffff">
+            </div>
+            <div class="form-group">
+              <label for="buttonPadding">Button Padding (px):</label>
+              <input type="number" id="buttonPadding" placeholder="e.g., 10">
+            </div>
+            `;
       default:
         return "";
     }
@@ -159,6 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       case "navbar":
         generateNavbar();
+        break;
+      case "button":
+        generateButton();
         break;
     }
   }
@@ -227,14 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const bgColor = document.getElementById("navbarBgColor").value;
     const textColor = document.getElementById("navbarTextColor").value;
 
-    // console.log("Generating Navbar:", {
-    //   className,
-    //   navbarItems,
-    //   alignment,
-    //   bgColor,
-    //   textColor,
-    // });
-
     const navLinkClass = `${className}-link`;
 
     // Inject Dynamic CSS
@@ -290,10 +309,64 @@ document.addEventListener("DOMContentLoaded", () => {
     cssCode.textContent = dynamicStyles;
   }
 
+  // Generate Button
+  function generateButton() {
+    const className =
+      document.getElementById("className").value || "generated-button";
+    const buttonText = document.getElementById("buttonText").value;
+    const buttonBgColor =
+      document.getElementById("buttonBgColor").value || "#007bff";
+    const buttonTextColor =
+      document.getElementById("buttonTextColor").value || "#ffffff";
+    const buttonPadding =
+      document.getElementById("buttonPadding").value || "10";
+
+    // Inject Dynamic CSS
+    const dynamicStyles = `
+      .${className} {
+        background-color: ${buttonBgColor};
+        color: ${buttonTextColor};
+        padding: ${buttonPadding}px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+  
+      .${className}:hover {
+        opacity: 0.9;
+      }
+  
+      .${className}:active {
+        transform: scale(0.98);
+      }
+    `;
+    document.getElementById("dynamicStyles").textContent = dynamicStyles;
+
+    // Create Button Element
+    const button = document.createElement("button");
+    button.textContent = buttonText;
+    button.classList.add(className);
+
+    // Display Button (clear previous content first)
+    const elementOutput = document.getElementById("elementOutput");
+    elementOutput.innerHTML = "";
+    elementOutput.appendChild(button);
+
+    // Generate HTML and CSS Code
+    const htmlCode = document.getElementById("htmlCode");
+    const cssCode = document.getElementById("cssCode");
+    htmlCode.textContent = `
+  <button class="${className}">
+    ${buttonText}
+  </button>
+    `;
+    cssCode.textContent = dynamicStyles;
+  }
+
   // Event listeners for card clicks
   headerCard.addEventListener("click", () => showCustomizationPage("header"));
   navbarCard.addEventListener("click", () => showCustomizationPage("navbar"));
-  buttonCard.addEventListener("click", showWarning);
+  buttonCard.addEventListener("click", () => showCustomizationPage("button"));
   cardCard.addEventListener("click", showWarning);
   formCard.addEventListener("click", showWarning);
   footerCard.addEventListener("click", showWarning);
