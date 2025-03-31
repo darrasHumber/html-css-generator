@@ -169,4 +169,49 @@ function generateButton() {
   cssCode.textContent = dynamicStyles;
 }
 
-export { generateHeader, generateNavbar, generateButton };
+function generateFooter() {
+  // Gather inputs with fallback default values
+  const className = document.getElementById("className").value || "generated-footer";
+  const footerText = document.getElementById("footerText").value;
+  const bgColor = document.getElementById("footerBgColor").value || "#333333";
+  const textColor = document.getElementById("footerTextColor").value || "#ffffff";
+  const padding = document.getElementById("footerPadding").value || "10";
+  const margin = document.getElementById("footerMargin").value || "10";
+  const alignment = document.getElementById("footerAlignment").value || "center";
+
+  // Build dynamic CSS for the footer
+  const dynamicStyles = `
+    .${className} {
+      background-color: ${bgColor};
+      color: ${textColor};
+      padding: ${padding}px;
+      margin: ${margin}px;
+      text-align: ${alignment};
+      border-radius: 4px;
+    }
+  `;
+  // Inject the dynamic styles into the page
+  document.getElementById("dynamicStyles").textContent = dynamicStyles;
+
+  // Create the footer element
+  const footer = document.createElement("footer");
+  footer.textContent = footerText;
+  footer.classList.add(className);
+
+  // Display the footer element in the output area
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = "";
+  elementOutput.appendChild(footer);
+
+  // Generate HTML and CSS code snippets for display
+  const htmlCode = document.getElementById("htmlCode");
+  const cssCode = document.getElementById("cssCode");
+  htmlCode.textContent = `
+<footer class="${className}">
+  ${footerText}
+</footer>
+  `;
+  cssCode.textContent = dynamicStyles;
+}
+
+export { generateHeader, generateNavbar, generateButton, generateFooter };

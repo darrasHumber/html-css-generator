@@ -93,6 +93,42 @@ export function getElementControls(element) {
               <input type="number" id="buttonPadding" placeholder="e.g., 10">
             </div>
             `;
+
+            case "footer":
+      return `
+        <div class="form-group">
+          <label for="className">Class Name:</label>
+          <input type="text" id="className" value="${defaultClassName}">
+        </div>
+        <div class="form-group">
+          <label for="footerText">Footer Text:</label>
+          <input type="text" id="footerText" placeholder="Enter footer text">
+        </div>
+        <div class="form-group">
+          <label for="footerBgColor">Background Color:</label>
+          <input type="color" id="footerBgColor" value="#333333">
+        </div>
+        <div class="form-group">
+          <label for="footerTextColor">Text Color:</label>
+          <input type="color" id="footerTextColor" value="#ffffff">
+        </div>
+        <div class="form-group">
+          <label for="footerPadding">Padding (px):</label>
+          <input type="number" id="footerPadding" placeholder="e.g., 10">
+        </div>
+        <div class="form-group">
+          <label for="footerMargin">Margin (px):</label>
+          <input type="number" id="footerMargin" placeholder="e.g., 10">
+        </div>
+        <div class="form-group">
+          <label for="footerAlignment">Alignment:</label>
+          <select id="footerAlignment">
+            <option value="left">Left</option>
+            <option value="center" selected>Center</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+      `;
     default:
       return "";
   }

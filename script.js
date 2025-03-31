@@ -94,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case "button":
         generateButton();
         break;
+      case "footer":
+        generateFooter();
+        break;
     }
   }
 
@@ -103,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   buttonCard.addEventListener("click", () => showCustomizationPage("button"));
   cardCard.addEventListener("click", showWarning);
   formCard.addEventListener("click", showWarning);
-  footerCard.addEventListener("click", showWarning);
+  footerCard.addEventListener("click", () => showCustomizationPage("footer"));
   more1Card.addEventListener("click", showWarning);
   more2Card.addEventListener("click", showWarning);
 
