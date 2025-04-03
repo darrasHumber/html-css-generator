@@ -3,6 +3,7 @@ import {
   generateButton,
   generateHeader,
   generateNavbar,
+  generateFooter,
 } from "./elementsGenerators.js";
 function copyCode(elementId) {
   const codeElement = document.getElementById(elementId);
