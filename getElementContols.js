@@ -94,7 +94,7 @@ export function getElementControls(element) {
             </div>
             `;
 
-            case "footer":
+    case "footer":
       return `
         <div class="form-group">
           <label for="className">Class Name:</label>
