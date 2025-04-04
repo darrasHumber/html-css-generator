@@ -22,7 +22,7 @@
       <div id="welcomePage">
         <header>
           <h1>Element Generator</h1>
-          <p>Craft your perfect web elements with ease</p>
+          <p>Craft your perfect web elements with ease!</p>
         </header>
 
         <main class="element-grid">
@@ -71,7 +71,7 @@
 
       <!-- Customization Page (Hidden by Default) -->
       <div id="customizationPage" class="hidden">
-        <button id="backButton" class="back-button">← Back</button>
+        <button id="backButton" class="back-button">⬅ BACK</button>
         <h2 id="elementTitle"></h2>
         <div class="customization-container">
           <!-- Left Column: Form Controls -->
@@ -88,9 +88,9 @@
             <div class="code-output">
               <h3>Generated Code:</h3>
               <pre id="htmlCode"></pre>
-              <button onclick="copyCode('htmlCode')">Copy HTML</button>
+              <button class="html-copy-button" onclick="copyCode('htmlCode')">Copy HTML</button>
               <pre id="cssCode"></pre>
-              <button onclick="copyCode('cssCode')">Copy CSS</button>
+              <button class="css-copy-button" onclick="copyCode('cssCode')">Copy CSS</button>
             </div>
           </div>
         </div>
