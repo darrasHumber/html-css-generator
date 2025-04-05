@@ -372,6 +372,70 @@ export function getElementControls(element) {
         <input type="text" id="cardButtonText" value="Learn More">
       </div>
     `;
+    case "flex":
+      return `
+    <div class="form-group">
+      <label for="flexClassName">Class Name:</label>
+      <input type="text" id="flexClassName" value="flex-container">
+    </div>
+
+    <div class="form-group">
+      <label for="flexDirection">Direction:</label>
+      <select id="flexDirection">
+        <option value="row">Row (horizontal)</option>
+        <option value="column">Column (vertical)</option>
+        <option value="row-reverse">Row Reverse</option>
+        <option value="column-reverse">Column Reverse</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="flexJustify">Justify Content:</label>
+      <select id="flexJustify">
+        <option value="flex-start">Start</option>
+        <option value="flex-end">End</option>
+        <option value="center">Center</option>
+        <option value="space-between">Space Between</option>
+        <option value="space-around">Space Around</option>
+        <option value="space-evenly">Space Evenly</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="flexAlign">Align Items:</label>
+      <select id="flexAlign">
+        <option value="stretch">Stretch</option>
+        <option value="flex-start">Start</option>
+        <option value="flex-end">End</option>
+        <option value="center">Center</option>
+        <option value="baseline">Baseline</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="flexWrap">Wrap:</label>
+      <select id="flexWrap">
+        <option value="nowrap">No Wrap</option>
+        <option value="wrap">Wrap</option>
+        <option value="wrap-reverse">Wrap Reverse</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="flexGap">Gap (px):</label>
+      <input type="number" id="flexGap" value="10" min="0" max="50">
+    </div>
+
+    <div class="form-group">
+      <label for="flexItems">Number of Items:</label>
+      <input type="number" id="flexItems" value="3" min="1" max="12">
+    </div>
+
+    <div class="form-group checkbox">
+      <input type="checkbox" id="flexBorder" checked>
+      <label for="flexBorder">Show Item Borders</label>
+    </div>
+  `;
     default:
       return "";
   }
