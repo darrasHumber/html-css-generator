@@ -6,6 +6,7 @@ import {
   generateFooter,
   generateForm,
   generateCard,
+  generateFlexContainer,
 } from "./elementsGenerators.js";
 // Copy to clipboard functionality
 function setupCopyButtons() {
@@ -127,6 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case "card":
         generateCard();
         break;
+      case "flex":
+        generateFlexContainer();
+        break;
     }
   }
 
@@ -137,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cardCard.addEventListener("click", () => showCustomizationPage("card"));
   formCard.addEventListener("click", () => showCustomizationPage("form"));
   footerCard.addEventListener("click", () => showCustomizationPage("footer"));
-  more1Card.addEventListener("click", showWarning);
+  more1Card.addEventListener("click", () => showCustomizationPage("flex"));
   more2Card.addEventListener("click", showWarning);
 
   // Event listener for back button

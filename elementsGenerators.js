@@ -643,6 +643,75 @@ box-shadow:0 8px 16px rgba(0,0,0,0.1);
   htmlCode.textContent = html;
   cssCode.textContent = dynamicStyles;
 }
+function generateFlexContainer() {
+  const className =
+    document.getElementById("flexClassName").value || "flex-container";
+  const direction = document.getElementById("flexDirection").value || "row";
+  const justify = document.getElementById("flexJustify").value || "flex-start";
+  const align = document.getElementById("flexAlign").value || "stretch";
+  const wrap = document.getElementById("flexWrap").value || "nowrap";
+  const gap = document.getElementById("flexGap").value || "10";
+  const itemCount = document.getElementById("flexItems").value || 3;
+  const showBorders = document.getElementById("flexBorder").checked;
+
+  // Generate dynamic CSS
+  let dynamicStyles = `
+    .${className} {
+      display: flex;
+      flex-direction: ${direction};
+      justify-content: ${justify};
+      align-items: ${align};
+      flex-wrap: ${wrap};
+      gap: ${gap}px;
+      padding: 20px;
+      min-height: 200px;
+      background-color: #f8f9fa;
+      ${showBorders ? "border: 1px dashed #ccc;" : ""}
+    }
+    
+    .${className}-item {
+      padding: 15px;
+      background-color: #3a86ff;
+      color: white;
+      ${showBorders ? "border: 1px solid #2667cc;" : ""}
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  `;
+
+  document.getElementById("dynamicStyles").textContent = dynamicStyles;
+
+  // Create Flex Container
+  const container = document.createElement("div");
+  container.className = className;
+
+  // Create Flex Items
+  for (let i = 1; i <= itemCount; i++) {
+    const item = document.createElement("div");
+    item.className = `${className}-item`;
+    item.textContent = `Item ${i}`;
+    container.appendChild(item);
+  }
+
+  // Display Container
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = "";
+  elementOutput.appendChild(container);
+
+  // Generate HTML and CSS Code
+  const htmlCode = document.getElementById("htmlCode");
+  const cssCode = document.getElementById("cssCode");
+
+  let html = `<div class="${className}">\n`;
+  for (let i = 1; i <= itemCount; i++) {
+    html += `  <div class="${className}-item">Item ${i}</div>\n`;
+  }
+  html += `</div>`;
+
+  htmlCode.textContent = html;
+  cssCode.textContent = dynamicStyles;
+}
 
 export {
   generateHeader,
@@ -651,4 +720,5 @@ export {
   generateFooter,
   generateForm,
   generateCard,
+  generateFlexContainer,
 };
