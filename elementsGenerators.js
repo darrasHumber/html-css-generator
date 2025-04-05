@@ -2,36 +2,58 @@
 function generateHeader() {
   const className =
     document.getElementById("className").value || "generated-header";
-  const headerText = document.getElementById("headerText").value;
-  const fontSize = document.getElementById("fontSize").value || "24"; // Default value if empty
-  const textColor = document.getElementById("textColor").value || "#000000"; // Default value if empty
+  const headerText =
+    document.getElementById("headerText").value || "Your Header Text";
+  const fontSize = document.getElementById("fontSize").value || "32";
+  const textColor = document.getElementById("textColor").value || "#000000";
   const backgroundColor =
-    document.getElementById("backgroundColor").value || "#ffffff"; // Default value if empty
-  const alignment = document.getElementById("headerAlignment").value || "left"; // Default value if empty
-  const padding = document.getElementById("headerPadding").value || "10"; // Default value if empty
-  const margin = document.getElementById("headerMargin").value || "10"; // Default value if empty
+    document.getElementById("backgroundColor").value || "#ffffff";
+  const alignment =
+    document.getElementById("headerAlignment").value || "center";
+  const padding = document.getElementById("headerPadding").value || "20";
+  const margin = document.getElementById("headerMargin").value || "0";
 
-  // Inject Dynamic CSS
+  // New header options
+  const headerType = document.getElementById("headerType")?.value || "h1";
+  const fontFamily =
+    document.getElementById("headerFont")?.value || "Arial, sans-serif";
+  const fontWeight = document.getElementById("headerWeight")?.value || "normal";
+  const textShadow = document.getElementById("textShadow")?.checked
+    ? "2px 2px 4px rgba(0,0,0,0.3)"
+    : "none";
+  const borderBottom = document.getElementById("headerBorder")?.checked
+    ? `3px solid ${textColor}`
+    : "none";
+  const hoverEffect = document.getElementById("hoverEffect")?.checked
+    ? "scale(1.02)"
+    : "none";
+
+  // Dynamic CSS
   const dynamicStyles = `
-      .${className} {
-        font-size: ${fontSize}px;
-        color: ${textColor};
-        background-color: ${backgroundColor};
-        padding: ${padding}px;
-        margin: ${margin}px;
-        text-align: ${alignment};
-        border-radius: 4px;
-      }
-    `;
+    .${className} {
+      font-size: ${fontSize}px;
+      color: ${textColor};
+      background-color: ${backgroundColor};
+      padding: ${padding}px;
+      margin: ${margin}px;
+      text-align: ${alignment};
+      font-family: ${fontFamily};
+      font-weight: ${fontWeight};
+      text-shadow: ${textShadow};
+      border-bottom: ${borderBottom};
+      transition: all 0.3s ease;
+    }
+    
+    .${className}:hover {
+      transform: ${hoverEffect};
+    }
+  `;
   document.getElementById("dynamicStyles").textContent = dynamicStyles;
-  //console.log(dynamicStyles);
 
   // Create Header Element
-  const header = document.createElement("header");
+  const header = document.createElement(headerType); // Now supports h1-h6
   header.textContent = headerText;
   header.classList.add(className);
-
-  //console.log("Header Element:", header); // Debugging: Log the header element
 
   // Display Header
   const elementOutput = document.getElementById("elementOutput");
@@ -41,14 +63,10 @@ function generateHeader() {
   // Generate HTML and CSS Code
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
-  htmlCode.textContent = `
-  <header class="${className}">
-    ${headerText}
-  </header>
-    `;
+
+  htmlCode.textContent = `<${headerType} class="${className}">${headerText}</${headerType}>`;
   cssCode.textContent = dynamicStyles;
 }
-
 // Function to generate the navbar
 function generateNavbar() {
   const className =
@@ -390,7 +408,7 @@ function parseFieldsWithCommas(input) {
     .map((item) => item.trim())
     .filter((item) => item.length > 0);
 }
-// Don't forget to export the new function
+
 export {
   generateHeader,
   generateNavbar,
