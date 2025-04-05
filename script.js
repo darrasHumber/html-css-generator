@@ -6,17 +6,6 @@ import {
   generateFooter,
   generateForm,
 } from "./elementsGenerators.js";
-// function copyCode(elementId) {
-//   const codeElement = document.getElementById(elementId);
-//   if (codeElement) {
-//     navigator.clipboard
-//       .writeText(codeElement.textContent)
-//       .then(() => alert("Code copied to clipboard!"))
-//       .catch(() => alert("Failed to copy code."));
-//   } else {
-//     console.error(`Element with ID "${elementId}" not found.`);
-//   }
-// }
 // Copy to clipboard functionality
 function setupCopyButtons() {
   document.addEventListener("click", (e) => {
