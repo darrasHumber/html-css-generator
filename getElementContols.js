@@ -91,25 +91,64 @@ export function getElementControls(element) {
             <label for="className">Class Name:</label>
             <input type="text" id="className" value="${defaultClassName}">
           </div>
+          
           <div class="form-group">
-            <label for="navbarItems">Navbar Items (comma-separated):</label>
-            <input type="text" id="navbarItems" placeholder="e.g., Home, About, Contact">
+            <label for="navbarItems">Navbar Items (comma separated):</label>
+            <input type="text" id="navbarItems" placeholder="Home, About, Services, Contact">
           </div>
+          
           <div class="form-group">
-            <label for="navbarAlignment">Alignment:</label>
-            <select id="navbarAlignment">
+            <label for="navbarType">Layout:</label>
+            <select id="navbarType">
               <option value="left">Left</option>
               <option value="center">Center</option>
               <option value="right">Right</option>
+              <option value="vertical">Vertical</option>
             </select>
           </div>
+          
+          <div class="form-group">
+            <label for="navbarStyle">Style:</label>
+            <select id="navbarStyle">
+              <option value="basic">Basic</option>
+              <option value="pill">Pill</option>
+              <option value="underline">Underline</option>
+            </select>
+          </div>
+          
           <div class="form-group">
             <label for="navbarBgColor">Background Color:</label>
             <input type="color" id="navbarBgColor" value="#333333">
           </div>
+          
           <div class="form-group">
             <label for="navbarTextColor">Text Color:</label>
             <input type="color" id="navbarTextColor" value="#ffffff">
+          </div>
+          
+          <div class="form-group">
+            <label for="navbarHoverColor">Hover Color:</label>
+            <input type="color" id="navbarHoverColor" value="#555555">
+          </div>
+          
+          <div class="form-group checkbox">
+            <input type="checkbox" id="navbarSticky" checked>
+            <label for="navbarSticky">Sticky Navbar</label>
+          </div>
+          
+          <div class="form-group">
+            <label for="navPadding">Navbar Padding:</label>
+            <input type="text" id="navPadding" value="1rem" placeholder="e.g., 1rem or 10px 20px">
+          </div>
+          
+          <div class="form-group">
+            <label for="navMargin">Navbar Margin:</label>
+            <input type="text" id="navMargin" value="0" placeholder="e.g., 0 or 10px 20px">
+          </div>
+          
+          <div class="form-group">
+            <label for="itemPadding">Item Padding:</label>
+            <input type="text" id="itemPadding" value="0.5rem 1rem" placeholder="e.g., 0.5rem 1rem">
           </div>
         `;
     case "button":

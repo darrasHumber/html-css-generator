@@ -74,66 +74,107 @@ function generateNavbar() {
   const navbarItems = document
     .getElementById("navbarItems")
     .value.split(",")
-    .map((item) => item.trim());
-  const alignment = document.getElementById("navbarAlignment").value;
-  const bgColor = document.getElementById("navbarBgColor").value;
-  const textColor = document.getElementById("navbarTextColor").value;
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
+
+  const navbarType = document.getElementById("navbarType").value || "left";
+  const navbarStyle = document.getElementById("navbarStyle").value || "basic";
+  const bgColor = document.getElementById("navbarBgColor").value || "#333333";
+  const textColor =
+    document.getElementById("navbarTextColor").value || "#ffffff";
+  const hoverColor =
+    document.getElementById("navbarHoverColor").value || "#555555";
+  const isSticky = document.getElementById("navbarSticky").checked;
+  const navPadding = document.getElementById("navPadding").value || "1rem";
+  const navMargin = document.getElementById("navMargin").value || "0";
+  const itemPadding =
+    document.getElementById("itemPadding").value || "0.5rem 1rem";
 
   const navLinkClass = `${className}-link`;
 
-  // Inject Dynamic CSS
-  const dynamicStyles = `
-      .${className} {
-        display: flex;
-        gap: 10px;
-        background-color: ${bgColor};
-        padding: 10px;
-        border-radius: 4px;
-        justify-content: ${alignment};
+  let dynamicStyles = `
+    .${className} {
+      background-color: ${bgColor};
+      padding: ${navPadding};
+      margin: ${navMargin};
+      ${isSticky ? "position: sticky; top: 0; z-index: 1000;" : ""}
+      ${navbarType === "vertical" ? "width: 200px; height: 100vh;" : ""}
+    }
+    
+    .${className}-container {
+      display: flex;
+      ${navbarType === "vertical" ? "flex-direction: column;" : ""}
+      ${navbarType === "center" ? "justify-content: center;" : ""}
+      ${navbarType === "right" ? "justify-content: flex-end;" : ""}
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 1rem;
+    }
+    
+    .${navLinkClass} {
+      color: ${textColor};
+      text-decoration: none;
+      padding: ${itemPadding};
+      border-radius: ${navbarStyle === "pill" ? "50px" : "0"};
+      transition: all 0.3s ease;
+      ${
+        navbarStyle === "underline"
+          ? "border-bottom: 2px solid transparent;"
+          : ""
       }
-  
-      .${navLinkClass} {
-        color: ${textColor};
-        text-decoration: none;
-        padding: 5px 10px;
+    }
+    
+    .${navLinkClass}:hover {
+      color: ${textColor};
+      ${navbarStyle === "basic" ? `background-color: ${hoverColor};` : ""}
+      ${
+        navbarStyle === "pill"
+          ? `background-color: ${hoverColor}; transform: translateY(-2px);`
+          : ""
       }
-  
-      .${navLinkClass}:hover {
-        background-color: #555;
+      ${
+        navbarStyle === "underline" ? `border-bottom-color: ${hoverColor};` : ""
       }
-    `;
+    }
+  `;
+
   document.getElementById("dynamicStyles").textContent = dynamicStyles;
 
-  // Create Navbar Element
   const navbar = document.createElement("nav");
   navbar.classList.add(className);
 
+  const navContainer = document.createElement("ul");
+  navContainer.classList.add(`${className}-container`);
+
   navbarItems.forEach((item) => {
+    const listItem = document.createElement("li");
     const link = document.createElement("a");
     link.textContent = item;
-    link.classList.add(navLinkClass);
     link.href = "#";
-    navbar.appendChild(link);
+    link.classList.add(navLinkClass);
+    listItem.appendChild(link);
+    navContainer.appendChild(listItem);
   });
 
-  // Display Navbar
+  navbar.appendChild(navContainer);
+
   const elementOutput = document.getElementById("elementOutput");
   elementOutput.innerHTML = "";
   elementOutput.appendChild(navbar);
 
-  // Generate HTML and CSS Code
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
-  htmlCode.textContent = `
-  <nav class="${className}">
-    ${navbarItems
-      .map((item) => `<a href="#" class="${navLinkClass}">${item}</a>`)
-      .join("\n  ")}
-  </nav>
-    `;
+
+  let html = `<nav class="${className}"><ul class="${className}-container">`;
+  html += navbarItems
+    .map((item) => `<li><a href="#" class="${navLinkClass}">${item}</a></li>`)
+    .join("");
+  html += `</ul></nav>`;
+
+  htmlCode.textContent = html;
   cssCode.textContent = dynamicStyles;
 }
-
 // Generate Button
 function generateButton() {
   const className =
