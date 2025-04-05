@@ -153,29 +153,89 @@ export function getElementControls(element) {
         `;
     case "button":
       return `
-              <div class="form-group">
-                <label for="className">Class Name:</label>
-                <input type="text" id="className" value="${defaultClassName}">
-              </div>
-
-              <div class="form-group">
+            <div class="form-group">
+              <label for="className">Class Name:</label>
+              <input type="text" id="className" value="${defaultClassName}">
+            </div>
+        
+            <div class="form-group">
               <label for="buttonText">Button Text:</label>
-              <input type="text" id="buttonText" placeholder="e.g., Click Me">
+              <input type="text" id="buttonText" value="Click Me">
             </div>
+        
             <div class="form-group">
-              <label for="buttonBgColor">Button Background Color:</label>
-              <input type="color" id="buttonBgColor" value="#007bff">
+              <label for="buttonType">Button Type:</label>
+              <select id="buttonType">
+                <option value="solid">Solid</option>
+                <option value="outline">Outline</option>
+                <option value="ghost">Ghost</option>
+                <option value="link">Link Style</option>
+              </select>
             </div>
+        
             <div class="form-group">
-              <label for="buttonTextColor">Button Text Color:</label>
+              <label for="buttonSize">Size:</label>
+              <select id="buttonSize">
+                <option value="small">Small</option>
+                <option value="medium" selected>Medium</option>
+                <option value="large">Large</option>
+              </select>
+            </div>
+        
+            <div class="form-group">
+              <label for="buttonBgColor">Background Color:</label>
+              <input type="color" id="buttonBgColor" value="#3a86ff">
+            </div>
+        
+            <div class="form-group">
+              <label for="buttonTextColor">Text Color:</label>
               <input type="color" id="buttonTextColor" value="#ffffff">
             </div>
+        
             <div class="form-group">
-              <label for="buttonPadding">Button Padding (px):</label>
-              <input type="number" id="buttonPadding" placeholder="e.g., 10">
+              <label for="buttonHoverColor">Hover Color:</label>
+              <input type="color" id="buttonHoverColor" value="#2667cc">
             </div>
-            `;
-
+        
+            <div class="form-group">
+              <label for="buttonBorderRadius">Border Radius (px):</label>
+              <input type="number" id="buttonBorderRadius" value="4" min="0" max="50">
+            </div>
+        
+            <div class="form-group">
+              <label for="buttonWidth">Width:</label>
+              <select id="buttonWidth">
+                <option value="auto">Auto</option>
+                <option value="full">Full Width</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+        
+            <div class="form-group" id="customWidthGroup" style="display:none;">
+              <label for="buttonCustomWidth">Custom Width (px):</label>
+              <input type="number" id="buttonCustomWidth" value="200" min="50" max="1000">
+            </div>
+        
+            <div class="form-group checkbox">
+              <input type="checkbox" id="buttonShadow" checked>
+              <label for="buttonShadow">Add Shadow</label>
+            </div>
+        
+            <div class="form-group checkbox">
+              <input type="checkbox" id="buttonIcon">
+              <label for="buttonIcon">Add Icon</label>
+            </div>
+        
+            <div class="form-group" id="iconSelectGroup" style="display:none;">
+              <label for="buttonIconSelect">Choose Icon:</label>
+              <select id="buttonIconSelect">
+                <option value="fa-download">Download</option>
+                <option value="fa-arrow-right">Arrow</option>
+                <option value="fa-heart">Heart</option>
+                <option value="fa-star">Star</option>
+              </select>
+            </div>
+          `;
     case "footer":
       return `
         <div class="form-group">

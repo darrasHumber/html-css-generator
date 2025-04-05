@@ -179,32 +179,108 @@ function generateNavbar() {
 function generateButton() {
   const className =
     document.getElementById("className").value || "generated-button";
-  const buttonText = document.getElementById("buttonText").value;
-  const buttonBgColor =
-    document.getElementById("buttonBgColor").value || "#007bff";
-  const buttonTextColor =
+  const buttonText = document.getElementById("buttonText").value || "Click Me";
+  const buttonType = document.getElementById("buttonType").value || "solid";
+  const buttonSize = document.getElementById("buttonSize").value || "medium";
+  const bgColor = document.getElementById("buttonBgColor").value || "#3a86ff";
+  const textColor =
     document.getElementById("buttonTextColor").value || "#ffffff";
-  const buttonPadding = document.getElementById("buttonPadding").value || "10";
+  const hoverColor =
+    document.getElementById("buttonHoverColor").value || "#2667cc";
+  const borderRadius =
+    document.getElementById("buttonBorderRadius").value || "4";
+  const widthType = document.getElementById("buttonWidth").value || "auto";
+  const customWidth =
+    document.getElementById("buttonCustomWidth")?.value || "200";
+  const hasShadow = document.getElementById("buttonShadow").checked;
+  const hasIcon = document.getElementById("buttonIcon").checked;
+  const iconClass =
+    document.getElementById("buttonIconSelect")?.value || "fa-download";
 
-  // Inject Dynamic CSS
-  const dynamicStyles = `
-      .${className} {
-        background-color: ${buttonBgColor};
-        color: ${buttonTextColor};
-        padding: ${buttonPadding}px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-  
-      .${className}:hover {
-        opacity: 0.9;
-      }
-  
-      .${className}:active {
-        transform: scale(0.98);
-      }
-    `;
+  let dynamicStyles = `.${className}{\n`;
+  dynamicStyles += `display:inline-flex;\n`;
+  dynamicStyles += `align-items:center;\n`;
+  dynamicStyles += `justify-content:center;\n`;
+  dynamicStyles += `border:none;\n`;
+  dynamicStyles += `cursor:pointer;\n`;
+  dynamicStyles += `transition:all 0.3s ease;\n`;
+  dynamicStyles += `font-family:'Poppins',sans-serif;\n`;
+  dynamicStyles += `font-weight:500;\n`;
+  dynamicStyles += `gap:8px;\n`;
+
+  // Button Type
+  if (buttonType === "solid") {
+    dynamicStyles += `background-color:${bgColor};\n`;
+    dynamicStyles += `color:${textColor};\n`;
+    dynamicStyles += `border:1px solid ${bgColor};\n`;
+  } else if (buttonType === "outline") {
+    dynamicStyles += `background-color:transparent;\n`;
+    dynamicStyles += `color:${bgColor};\n`;
+    dynamicStyles += `border:1px solid ${bgColor};\n`;
+  } else if (buttonType === "ghost") {
+    dynamicStyles += `background-color:transparent;\n`;
+    dynamicStyles += `color:${bgColor};\n`;
+    dynamicStyles += `border:1px solid transparent;\n`;
+  } else if (buttonType === "link") {
+    dynamicStyles += `background-color:transparent;\n`;
+    dynamicStyles += `color:${bgColor};\n`;
+    dynamicStyles += `border:none;\n`;
+    dynamicStyles += `text-decoration:underline;\n`;
+  }
+
+  // Button Size
+  if (buttonSize === "small") {
+    dynamicStyles += `padding:6px 12px;\n`;
+    dynamicStyles += `font-size:12px;\n`;
+  } else if (buttonSize === "medium") {
+    dynamicStyles += `padding:10px 20px;\n`;
+    dynamicStyles += `font-size:14px;\n`;
+  } else if (buttonSize === "large") {
+    dynamicStyles += `padding:14px 28px;\n`;
+    dynamicStyles += `font-size:16px;\n`;
+  }
+
+  // Additional Styles
+  dynamicStyles += `border-radius:${borderRadius}px;\n`;
+  if (widthType === "full") dynamicStyles += `width:100%;\n`;
+  if (widthType === "custom") dynamicStyles += `width:${customWidth}px;\n`;
+  if (hasShadow) dynamicStyles += `box-shadow:0 4px 6px rgba(0,0,0,0.1);\n`;
+  dynamicStyles += `}\n`;
+
+  // Hover States
+  dynamicStyles += `.${className}:hover{\n`;
+  if (buttonType === "solid")
+    dynamicStyles += `background-color:${hoverColor};\n`;
+  if (buttonType === "outline") {
+    dynamicStyles += `background-color:${bgColor};\n`;
+    dynamicStyles += `color:${textColor};\n`;
+  }
+  if (buttonType === "ghost")
+    dynamicStyles += `background-color:rgba(58,134,255,0.1);\n`;
+  if (buttonType === "link") dynamicStyles += `opacity:0.8;\n`;
+  if (hasShadow) dynamicStyles += `box-shadow:0 6px 8px rgba(0,0,0,0.15);\n`;
+  if (hasShadow || buttonType === "link")
+    dynamicStyles += `transform:translateY(-1px);\n`;
+  dynamicStyles += `}\n`;
+
+  // Active State
+  dynamicStyles += `.${className}:active{\n`;
+  dynamicStyles += `transform:scale(0.98);\n`;
+  dynamicStyles += `}\n`;
+
+  // Icon Style
+  if (hasIcon) {
+    dynamicStyles += `.${className}-icon{\n`;
+    dynamicStyles += `font-size:${
+      buttonSize === "small"
+        ? "12px"
+        : buttonSize === "medium"
+        ? "14px"
+        : "16px"
+    };\n`;
+    dynamicStyles += `}\n`;
+  }
+
   document.getElementById("dynamicStyles").textContent = dynamicStyles;
 
   // Create Button Element
@@ -212,19 +288,25 @@ function generateButton() {
   button.textContent = buttonText;
   button.classList.add(className);
 
-  // Display Button (clear previous content first)
+  if (hasIcon) {
+    const icon = document.createElement("i");
+    icon.className = `fas ${iconClass} ${className}-icon`;
+    button.prepend(icon);
+  }
+
+  // Display and generate code
   const elementOutput = document.getElementById("elementOutput");
   elementOutput.innerHTML = "";
   elementOutput.appendChild(button);
 
-  // Generate HTML and CSS Code
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
-  htmlCode.textContent = `
-  <button class="${className}">
-    ${buttonText}
-  </button>
-    `;
+
+  let html = `<button class="${className}">`;
+  if (hasIcon) html += `<i class="fas ${iconClass} ${className}-icon"></i>`;
+  html += `${buttonText}</button>`;
+
+  htmlCode.textContent = html;
   cssCode.textContent = dynamicStyles;
 }
 
