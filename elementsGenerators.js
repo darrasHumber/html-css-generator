@@ -532,10 +532,123 @@ function parseFieldsWithCommas(input) {
     .filter((item) => item.length > 0);
 }
 
+function generateCard() {
+  const className =
+    document.getElementById("className").value || "generated-card";
+  const cardTitle = document.getElementById("cardTitle").value || "Card Title";
+  const cardText = document.getElementById("cardText").value || "Card content";
+  const cardStyle = document.getElementById("cardStyle").value || "basic";
+  const bgColor = document.getElementById("cardBgColor").value || "#ffffff";
+  const textColor = document.getElementById("cardTextColor").value || "#333333";
+  const borderRadius = document.getElementById("cardBorderRadius").value || "8";
+  const padding = document.getElementById("cardPadding").value || "20";
+  const margin = document.getElementById("cardMargin").value || "10"; // New margin control
+  const hasButton = document.getElementById("cardButton").checked;
+  const buttonText =
+    document.getElementById("cardButtonText").value || "Learn More";
+
+  // Generate dynamic CSS with improved spacing
+  let dynamicStyles = `.${className}{
+display:block;
+overflow:hidden;
+background-color:${bgColor};
+color:${textColor};
+border-radius:${borderRadius}px;
+padding:${padding}px;
+margin:${margin}px;
+transition:all 0.3s ease;
+${cardStyle === "border" ? "border:1px solid #e0e0e0;" : ""}
+${cardStyle === "shadow" ? "box-shadow:0 2px 8px rgba(0,0,0,0.1);" : ""}
+}
+.${className}-title{
+font-size:1.25rem;
+font-weight:600;
+margin:0 0 15px 0;
+padding:0;
+}
+.${className}-text{
+font-size:0.9rem;
+line-height:1.5;
+margin:0 0 20px 0;
+padding:0;
+}
+.${className}-button{
+display:inline-block;
+padding:10px 20px;
+margin-top:15px;
+background-color:#3a86ff;
+color:white;
+border-radius:4px;
+text-decoration:none;
+font-size:0.9rem;
+cursor:pointer;
+border:none;
+}`;
+
+  if (cardStyle === "hover") {
+    dynamicStyles += `.${className}:hover{
+transform:translateY(-4px);
+box-shadow:0 8px 16px rgba(0,0,0,0.1);
+}`;
+  }
+
+  document.getElementById("dynamicStyles").textContent = dynamicStyles;
+
+  // Create Card Element
+  const card = document.createElement("div");
+  card.classList.add(className);
+
+  // Add title
+  const title = document.createElement("h3");
+  title.textContent = cardTitle;
+  title.classList.add(`${className}-title`);
+  card.appendChild(title);
+
+  // Add text
+  const text = document.createElement("p");
+  text.textContent = cardText;
+  text.classList.add(`${className}-text`);
+  card.appendChild(text);
+
+  // Add button if enabled
+  if (hasButton) {
+    const button = document.createElement("button");
+    button.textContent = buttonText;
+    button.classList.add(`${className}-button`);
+
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log("Card button clicked");
+    });
+
+    card.appendChild(button);
+  }
+
+  // Display Card
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = "";
+  elementOutput.appendChild(card);
+
+  // Generate HTML and CSS Code
+  const htmlCode = document.getElementById("htmlCode");
+  const cssCode = document.getElementById("cssCode");
+
+  let html = `<div class="${className}">`;
+  html += `<h3 class="${className}-title">${cardTitle}</h3>`;
+  html += `<p class="${className}-text">${cardText}</p>`;
+  if (hasButton)
+    html += `<button class="${className}-button">${buttonText}</button>`;
+  html += `</div>`;
+
+  htmlCode.textContent = html;
+  cssCode.textContent = dynamicStyles;
+}
+
 export {
   generateHeader,
   generateNavbar,
   generateButton,
   generateFooter,
   generateForm,
+  generateCard,
 };
