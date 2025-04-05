@@ -6,18 +6,50 @@ import {
   generateFooter,
   generateForm,
 } from "./elementsGenerators.js";
-function copyCode(elementId) {
-  const codeElement = document.getElementById(elementId);
-  if (codeElement) {
-    navigator.clipboard
-      .writeText(codeElement.textContent)
-      .then(() => alert("Code copied to clipboard!"))
-      .catch(() => alert("Failed to copy code."));
-  } else {
-    console.error(`Element with ID "${elementId}" not found.`);
-  }
+// function copyCode(elementId) {
+//   const codeElement = document.getElementById(elementId);
+//   if (codeElement) {
+//     navigator.clipboard
+//       .writeText(codeElement.textContent)
+//       .then(() => alert("Code copied to clipboard!"))
+//       .catch(() => alert("Failed to copy code."));
+//   } else {
+//     console.error(`Element with ID "${elementId}" not found.`);
+//   }
+// }
+// Copy to clipboard functionality
+function setupCopyButtons() {
+  document.addEventListener("click", (e) => {
+    if (e.target.matches(".html-copy-button, .css-copy-button")) {
+      const targetId = e.target.getAttribute("data-target");
+      const codeElement = document.getElementById(targetId);
+
+      if (codeElement) {
+        navigator.clipboard
+          .writeText(codeElement.textContent)
+          .then(() => {
+            // Visual feedback
+            const originalText = e.target.textContent;
+            e.target.textContent = "Copied!";
+            e.target.style.backgroundColor = "#28a745"; // @Hashim Update color for what you like
+
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              e.target.textContent = originalText;
+              e.target.style.backgroundColor = "";
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+            alert("Failed to copy code. Please try again.");
+          });
+      }
+    }
+  });
 }
+
 document.addEventListener("DOMContentLoaded", () => {
+  setupCopyButtons();
   const themeToggle = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("theme-icon");
   const body = document.body;
