@@ -5,43 +5,86 @@ export function getElementControls(element) {
   switch (element) {
     case "header":
       return `
-          <div class="form-group">
-            <label for="className">Class Name:</label>
-            <input type="text" id="className" value="${defaultClassName}">
-          </div>
-          <div class="form-group">
-            <label for="headerText">Header Text:</label>
-            <input type="text" id="headerText" placeholder="Enter header text">
-          </div>
-          <div class="form-group">
-            <label for="fontSize">Font Size (px):</label>
-            <input type="number" id="fontSize" placeholder="e.g., 24">
-          </div>
-          <div class="form-group">
-            <label for="textColor">Text Color:</label>
-            <input type="color" id="textColor" value="#000000">
-          </div>
-          <div class="form-group">
-            <label for="backgroundColor">Background Color:</label>
-            <input type="color" id="backgroundColor" value="#ffffff">
-          </div>
-          <div class="form-group">
-            <label for="headerAlignment">Alignment:</label>
-            <select id="headerAlignment">
-              <option value="left">Left</option>
-              <option value="center">Center</option>
-              <option value="right">Right</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="headerPadding">Padding (px):</label>
-            <input type="number" id="headerPadding" placeholder="e.g., 10">
-          </div>
-          <div class="form-group">
-            <label for="headerMargin">Margin (px):</label>
-            <input type="number" id="headerMargin" placeholder="e.g., 10">
-          </div>
-        `;
+        <div class="form-group">
+          <label for="className">Class Name:</label>
+          <input type="text" id="className" value="${defaultClassName}">
+        </div>
+        <div class="form-group">
+          <label for="headerText">Header Text:</label>
+          <input type="text" id="headerText" placeholder="Enter header text" value="Welcome Header">
+        </div>
+        <div class="form-group">
+          <label for="headerType">Header Level:</label>
+          <select id="headerType">
+            <option value="h1">H1 (Most Important)</option>
+            <option value="h2">H2</option>
+            <option value="h3">H3</option>
+            <option value="h4">H4</option>
+            <option value="h5">H5</option>
+            <option value="h6">H6 (Least Important)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fontSize">Font Size (px):</label>
+          <input type="number" id="fontSize" value="32" min="10" max="100">
+        </div>
+        <div class="form-group">
+          <label for="headerFont">Font Family:</label>
+          <select id="headerFont">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="'Times New Roman', serif">Times New Roman</option>
+            <option value="'Courier New', monospace">Courier New</option>
+            <option value="'Poppins', sans-serif">Poppins</option>
+            <option value="'Roboto', sans-serif">Roboto</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="headerWeight">Font Weight:</label>
+          <select id="headerWeight">
+            <option value="normal">Normal</option>
+            <option value="bold">Bold</option>
+            <option value="lighter">Light</option>
+            <option value="700">700 (Bold)</option>
+            <option value="900">900 (Black)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="textColor">Text Color:</label>
+          <input type="color" id="textColor" value="#000000">
+        </div>
+        <div class="form-group">
+          <label for="backgroundColor">Background Color:</label>
+          <input type="color" id="backgroundColor" value="#ffffff">
+        </div>
+        <div class="form-group">
+          <label for="headerAlignment">Alignment:</label>
+          <select id="headerAlignment">
+            <option value="left">Left</option>
+            <option value="center" selected>Center</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="headerPadding">Padding (px):</label>
+          <input type="number" id="headerPadding" value="20" min="0" max="100">
+        </div>
+        <div class="form-group">
+          <label for="headerMargin">Margin (px):</label>
+          <input type="number" id="headerMargin" value="0" min="0" max="100">
+        </div>
+        <div class="form-group checkbox">
+          <input type="checkbox" id="textShadow">
+          <label for="textShadow">Add Text Shadow</label>
+        </div>
+        <div class="form-group checkbox">
+          <input type="checkbox" id="headerBorder">
+          <label for="headerBorder">Add Bottom Border</label>
+        </div>
+        <div class="form-group checkbox">
+          <input type="checkbox" id="hoverEffect">
+          <label for="hoverEffect">Add Hover Effect</label>
+        </div>
+      `;
     case "navbar":
       return `
           <div class="form-group">

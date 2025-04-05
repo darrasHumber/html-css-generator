@@ -108,7 +108,7 @@ h1 {
 
 .theme-toggle:hover {
   background-color: var(--secondary-color);
-  box-shadow: 0 0 20px rgba(131, 56, 236, 0.7)
+  box-shadow: 0 0 20px rgba(131, 56, 236, 0.7);
 }
 
 /* Customization Page Styles */
@@ -234,4 +234,124 @@ button:active {
 
 button {
   font-weight: bold;
+}
+
+/* Improved Checkbox Styles */
+.form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-group.checkbox input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.form-group.checkbox input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+}
+
+.form-group.checkbox input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-group.checkbox label {
+  font-weight: normal;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-group.checkbox:hover input[type="checkbox"] {
+  border-color: var(--secondary-color);
+}
+
+.form-group.checkbox input[type="checkbox"]:focus {
+  outline: 2px solid rgba(58, 134, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Additional Improvements */
+.form-group {
+  gap: 8px; /* Slightly reduced gap for better density */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  transition: border-color 0.2s ease;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Better button consistency */
+button,
+.code-output button,
+.back-button {
+  transition: all 0.2s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Dark mode adjustments for form elements */
+.dark-mode .form-group input,
+.dark-mode .form-group select,
+.dark-mode .form-group textarea {
+  border-color: #555;
+  background-color: #333;
+}
+
+.dark-mode .form-group input[type="color"] {
+  background-color: #444;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .output-column {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+
+  .form-group.checkbox {
+    margin-top: 5px;
+  }
+}
+
+/* Pre tag improvements */
+pre {
+  font-family: "Courier New", monospace;
+  line-height: 1.5;
+  margin: 10px 0;
+  white-space: pre-wrap;
+}
+
+/* Element card hover state fix */
+.element-card {
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme toggle z-index */
+.theme-toggle {
+  z-index: 100;
 }

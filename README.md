@@ -7,3 +7,5 @@
 - Header
 - Navbar
 - Button
+- Footer
+- Form
