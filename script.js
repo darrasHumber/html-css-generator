@@ -5,6 +5,7 @@ import {
   generateNavbar,
   generateFooter,
   generateForm,
+  generateCard,
 } from "./elementsGenerators.js";
 // Copy to clipboard functionality
 function setupCopyButtons() {
@@ -123,6 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case "form":
         generateForm();
         break;
+      case "card":
+        generateCard();
+        break;
     }
   }
 
@@ -130,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
   headerCard.addEventListener("click", () => showCustomizationPage("header"));
   navbarCard.addEventListener("click", () => showCustomizationPage("navbar"));
   buttonCard.addEventListener("click", () => showCustomizationPage("button"));
-  cardCard.addEventListener("click", showWarning);
+  cardCard.addEventListener("click", () => showCustomizationPage("card"));
   formCard.addEventListener("click", () => showCustomizationPage("form"));
   footerCard.addEventListener("click", () => showCustomizationPage("footer"));
   more1Card.addEventListener("click", showWarning);

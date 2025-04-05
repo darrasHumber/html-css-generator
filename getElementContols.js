@@ -310,6 +310,68 @@ export function getElementControls(element) {
       <input type="number" id="formWidth" value="80" min="10" max="100">
     </div>
   `;
+    case "card":
+      return `
+      <div class="form-group">
+        <label for="className">Class Name:</label>
+        <input type="text" id="className" value="${defaultClassName}">
+      </div>
+  
+      <div class="form-group">
+        <label for="cardTitle">Card Title:</label>
+        <input type="text" id="cardTitle" value="Card Title">
+      </div>
+  
+      <div class="form-group">
+        <label for="cardText">Card Text:</label>
+        <textarea id="cardText" rows="3">This is a sample card text content.</textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="cardStyle">Card Style:</label>
+        <select id="cardStyle">
+          <option value="basic">Basic</option>
+          <option value="border">Bordered</option>
+          <option value="shadow">Shadowed</option>
+          <option value="hover">Hoverable</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="cardBgColor">Background Color:</label>
+        <input type="color" id="cardBgColor" value="#ffffff">
+      </div>
+  
+      <div class="form-group">
+        <label for="cardTextColor">Text Color:</label>
+        <input type="color" id="cardTextColor" value="#333333">
+      </div>
+  
+      <div class="form-group">
+        <label for="cardBorderRadius">Border Radius (px):</label>
+        <input type="number" id="cardBorderRadius" value="8" min="0" max="50">
+      </div>
+  
+      <div class="form-group">
+        <label for="cardPadding">Padding (px):</label>
+        <input type="number" id="cardPadding" value="20" min="0" max="50">
+      </div>
+  
+      <div class="form-group">
+        <label for="cardMargin">Margin (px):</label>
+        <input type="number" id="cardMargin" value="10" min="0" max="50">
+      </div>
+  
+      <div class="form-group checkbox">
+        <input type="checkbox" id="cardButton">
+        <label for="cardButton">Include Button</label>
+      </div>
+  
+      <div class="form-group" id="buttonTextGroup" style="display:none;">
+        <label for="cardButtonText">Button Text:</label>
+        <input type="text" id="cardButtonText" value="Learn More">
+      </div>
+    `;
     default:
       return "";
   }
