@@ -171,13 +171,16 @@ function generateButton() {
 
 function generateFooter() {
   // Gather inputs with fallback default values
-  const className = document.getElementById("className").value || "generated-footer";
+  const className =
+    document.getElementById("className").value || "generated-footer";
   const footerText = document.getElementById("footerText").value;
   const bgColor = document.getElementById("footerBgColor").value || "#333333";
-  const textColor = document.getElementById("footerTextColor").value || "#ffffff";
+  const textColor =
+    document.getElementById("footerTextColor").value || "#ffffff";
   const padding = document.getElementById("footerPadding").value || "10";
   const margin = document.getElementById("footerMargin").value || "10";
-  const alignment = document.getElementById("footerAlignment").value || "center";
+  const alignment =
+    document.getElementById("footerAlignment").value || "center";
 
   // Build dynamic CSS for the footer
   const dynamicStyles = `
@@ -214,4 +217,184 @@ function generateFooter() {
   cssCode.textContent = dynamicStyles;
 }
 
-export { generateHeader, generateNavbar, generateButton, generateFooter };
+function generateForm() {
+  // Default values
+  const className =
+    document.getElementById("className").value || "generated-form";
+  const formTitle = document.getElementById("formTitle").value || "Form";
+  const formFieldsInput =
+    document.getElementById("formFields").value || "Name, Email, Message";
+  const fieldTypesInput =
+    document.getElementById("fieldTypes").value || "text, email, textarea";
+  const submitText = document.getElementById("submitText").value || "Submit";
+
+  // Styling values
+  const bgColor = document.getElementById("formBgColor").value || "#ffffff";
+  const textColor = document.getElementById("formTextColor").value || "#333333";
+  const padding = document.getElementById("formPadding").value || "20";
+  const width = document.getElementById("formWidth").value || "400";
+
+  // Parse fields and types
+  const formFields = parseFieldsWithCommas(formFieldsInput);
+  let fieldTypes = parseFieldsWithCommas(fieldTypesInput);
+
+  // Ensure matching number of field types
+  while (fieldTypes.length < formFields.length) {
+    fieldTypes.push("text");
+  }
+
+  // Generate CSS
+  const dynamicStyles = `
+    .${className} {
+      background-color: ${bgColor};
+      color: ${textColor};
+      padding: ${padding}px;
+      width: ${width}%;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .${className} h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    .${className}-field {
+      margin-bottom: 15px;
+    }
+    
+    .${className}-field label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .${className}-field input,
+    .${className}-field textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .${className}-field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .${className}-submit {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  `;
+  document.getElementById("dynamicStyles").textContent = dynamicStyles;
+
+  // Create form element
+  const form = document.createElement("form");
+  form.classList.add(className);
+
+  // Add title
+  if (formTitle) {
+    const title = document.createElement("h3");
+    title.textContent = formTitle;
+    form.appendChild(title);
+  }
+
+  // Add form fields
+  formFields.forEach((field, index) => {
+    const fieldType = fieldTypes[index].toLowerCase();
+    const fieldGroup = document.createElement("div");
+    fieldGroup.classList.add(`${className}-field`);
+
+    const label = document.createElement("label");
+    label.textContent = field;
+    const fieldId = `${className}-${field.toLowerCase().replace(/\s+/g, "-")}`;
+    label.htmlFor = fieldId;
+    fieldGroup.appendChild(label);
+
+    let input;
+    if (fieldType === "textarea") {
+      input = document.createElement("textarea");
+      input.rows = 4;
+    } else {
+      input = document.createElement("input");
+      input.type = fieldType;
+    }
+
+    input.id = fieldId;
+    input.name = field.toLowerCase().replace(/\s+/g, "_");
+    fieldGroup.appendChild(input);
+    form.appendChild(fieldGroup);
+  });
+
+  // Add submit button
+  const submitButton = document.createElement("button");
+  submitButton.type = "submit";
+  submitButton.classList.add(`${className}-submit`);
+  submitButton.textContent = submitText;
+  form.appendChild(submitButton);
+
+  // Display form
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = "";
+  elementOutput.appendChild(form);
+
+  // Generate code output
+  const htmlCode = document.getElementById("htmlCode");
+  const cssCode = document.getElementById("cssCode");
+
+  let html = `<form class="${className}">\n`;
+  if (formTitle) {
+    html += `  <h3>${formTitle}</h3>\n`;
+  }
+
+  formFields.forEach((field, index) => {
+    const fieldType = fieldTypes[index].toLowerCase();
+    const fieldId = `${className}-${field.toLowerCase().replace(/\s+/g, "-")}`;
+    const fieldName = field.toLowerCase().replace(/\s+/g, "_");
+
+    html += `  <div class="${className}-field">\n`;
+    html += `    <label for="${fieldId}">${field}</label>\n`;
+
+    if (fieldType === "textarea") {
+      html += `    <textarea id="${fieldId}" name="${fieldName}" rows="4"></textarea>\n`;
+    } else {
+      html += `    <input type="${fieldType}" id="${fieldId}" name="${fieldName}">\n`;
+    }
+
+    html += `  </div>\n`;
+  });
+
+  html += `  <button type="submit" class="${className}-submit">${submitText}</button>\n`;
+  html += `</form>`;
+
+  htmlCode.textContent = html;
+  cssCode.textContent = dynamicStyles;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Form submitted");
+  });
+}
+
+function parseFieldsWithCommas(input) {
+  if (!input) return [];
+  return input
+    .split(",")
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
+}
+// Don't forget to export the new function
+export {
+  generateHeader,
+  generateNavbar,
+  generateButton,
+  generateFooter,
+  generateForm,
+};

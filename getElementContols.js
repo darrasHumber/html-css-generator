@@ -129,6 +129,45 @@ export function getElementControls(element) {
           </select>
         </div>
       `;
+    case "form":
+      return `
+    <div class="form-group">
+      <label for="className">Class Name:</label>
+      <input type="text" id="className" value="${defaultClassName}">
+    </div>
+    <div class="form-group">
+      <label for="formTitle">Form Title:</label>
+      <input type="text" id="formTitle" placeholder="Enter form title">
+    </div>
+    <div class="form-group">
+      <label for="formFields">Form Fields (comma-separated):</label>
+      <input type="text" id="formFields" placeholder="e.g., Name,Email,Message">
+    </div>
+    <div class="form-group">
+      <label for="fieldTypes">Field Types (comma-separated):</label>
+      <input type="text" id="fieldTypes" placeholder="e.g., text,email,textarea">
+    </div>
+    <div class="form-group">
+      <label for="submitText">Submit Button Text:</label>
+      <input type="text" id="submitText" value="Submit">
+    </div>
+    <div class="form-group">
+      <label for="formBgColor">Background Color:</label>
+      <input type="color" id="formBgColor" value="#ffffff">
+    </div>
+    <div class="form-group">
+      <label for="formTextColor">Text Color:</label>
+      <input type="color" id="formTextColor" value="#333333">
+    </div>
+    <div class="form-group">
+      <label for="formPadding">Padding (px):</label>
+      <input type="number" id="formPadding" value="20">
+    </div>
+    <div class="form-group">
+      <label for="formWidth">Width (%):</label>
+      <input type="number" id="formWidth" value="80" min="10" max="100">
+    </div>
+  `;
     default:
       return "";
   }

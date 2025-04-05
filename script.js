@@ -4,6 +4,7 @@ import {
   generateHeader,
   generateNavbar,
   generateFooter,
+  generateForm,
 } from "./elementsGenerators.js";
 function copyCode(elementId) {
   const codeElement = document.getElementById(elementId);
@@ -98,6 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case "footer":
         generateFooter();
         break;
+      case "form":
+        generateForm();
+        break;
     }
   }
 
@@ -106,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   navbarCard.addEventListener("click", () => showCustomizationPage("navbar"));
   buttonCard.addEventListener("click", () => showCustomizationPage("button"));
   cardCard.addEventListener("click", showWarning);
-  formCard.addEventListener("click", showWarning);
+  formCard.addEventListener("click", () => showCustomizationPage("form"));
   footerCard.addEventListener("click", () => showCustomizationPage("footer"));
   more1Card.addEventListener("click", showWarning);
   more2Card.addEventListener("click", showWarning);
