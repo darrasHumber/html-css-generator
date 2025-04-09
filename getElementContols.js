@@ -436,6 +436,73 @@ export function getElementControls(element) {
       <label for="flexBorder">Show Item Borders</label>
     </div>
   `;
+    case "input-field":
+      return `
+    <!-- Class Name Controls -->
+    <div class="form-group">
+      <label for="inputClassName">Class Name</label>
+      <input type="text" id="inputClassName" value="generated-input-group">
+    </div>
+
+    <!-- Content Controls -->
+    <div class="form-group">
+      <label for="labelText">Label Text:</label>
+      <input type="text" id="labelText" value="Username">
+    </div>
+    <div class="form-group">
+      <label for="inputType">Input Type:</label>
+      <select id="inputType">
+        <option value="text">Text</option>
+        <option value="email">Email</option>
+        <option value="password">Password</option>
+        <option value="number">Number</option>
+        <option value="date">Date</option>
+        <option value="textarea">Textarea</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="placeholderText">Placeholder:</label>
+      <input type="text" id="placeholderText" value="Enter your username">
+    </div>
+    <div class="form-group checkbox">
+      <input type="checkbox" id="showHelpText" checked>
+      <label for="showHelpText">Show Help Text</label>
+    </div>
+    <div class="form-group">
+      <label for="helpText">Help Text:</label>
+      <input type="text" id="helpText" value="Must be 5-15 characters">
+    </div>
+
+    <!-- Style Controls -->
+    <div class="form-group">
+      <label for="labelColor">Label Color:</label>
+      <input type="color" id="labelColor" value="#333333">
+    </div>
+    <div class="form-group">
+      <label for="inputTextColor">Text Color:</label>
+      <input type="color" id="inputTextColor" value="#333333">
+    </div>
+    <div class="form-group">
+      <label for="inputBgColor">Background:</label>
+      <input type="color" id="inputBgColor" value="#ffffff">
+    </div>
+    <div class="form-group">
+      <label for="borderColor">Border Color:</label>
+      <input type="color" id="borderColor" value="#cccccc">
+    </div>
+    <div class="form-group">
+      <label for="focusColor">Focus Color:</label>
+      <input type="color" id="focusColor" value="#3a86ff">
+    </div>
+    <div class="form-group">
+      <label for="borderRadius">Border Radius (px):</label>
+      <input type="number" id="borderRadius" value="4" min="0" max="50">
+    </div>
+    <div class="form-group">
+      <label for="inputWidth">Width (%):</label>
+      <input type="number" id="inputWidth" value="100" min="10" max="100">
+    </div>
+  `;
     default:
       return "";
   }
