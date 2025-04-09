@@ -156,4 +156,30 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event listener for input changes
   elementControls.addEventListener("input", generateElement);
   elementControls.addEventListener("change", generateElement);
+
+  const typed = new Typed("header p", {
+    strings: [
+      "Craft your perfect web elements with ease!",
+      "Create beautiful UI components in seconds",
+      "Generate and customize with a click",
+    ],
+    typeSpeed: 80,
+    backSpeed: 60,
+    startDelay: 1500,
+    backDelay: 2000,
+    loop: true,
+    showCursor: true,
+    cursorChar: "|",
+    fadeOut: false,
+    fadeOutClass: "",
+    fadeOutDelay: 0,
+    smartBackspace: true,
+  });
+
+  // Add animation classes to cards with delay
+  const cards = document.querySelectorAll(".element-card");
+  cards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.3}s`;
+    card.classList.add("animate__animated", "animate__fadeInUp");
+  });
 });
