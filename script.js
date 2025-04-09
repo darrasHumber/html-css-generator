@@ -7,6 +7,7 @@ import {
   generateForm,
   generateCard,
   generateFlexContainer,
+  generateInputField,
 } from "./elementsGenerators.js";
 // Copy to clipboard functionality
 function setupCopyButtons() {
@@ -67,8 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardCard = document.getElementById("cardCard");
   const formCard = document.getElementById("formCard");
   const footerCard = document.getElementById("footerCard");
-  const more1Card = document.getElementById("more1Card");
-  const more2Card = document.getElementById("more2Card");
+  const flexCard = document.getElementById("flexCard");
+  const inputCard = document.getElementById("inputCard");
 
   // Get customization page elements
   const welcomePage = document.getElementById("welcomePage");
@@ -131,6 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case "flex":
         generateFlexContainer();
         break;
+      case "input-field":
+        generateInputField();
+        break;
     }
   }
 
@@ -141,8 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
   cardCard.addEventListener("click", () => showCustomizationPage("card"));
   formCard.addEventListener("click", () => showCustomizationPage("form"));
   footerCard.addEventListener("click", () => showCustomizationPage("footer"));
-  more1Card.addEventListener("click", () => showCustomizationPage("flex"));
-  more2Card.addEventListener("click", showWarning);
+  flexCard.addEventListener("click", () => showCustomizationPage("flex"));
+  inputCard.addEventListener("click", () =>
+    showCustomizationPage("input-field")
+  );
 
   // Event listener for back button
   backButton.addEventListener("click", showWelcomePage);

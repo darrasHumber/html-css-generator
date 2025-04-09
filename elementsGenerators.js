@@ -712,6 +712,139 @@ function generateFlexContainer() {
   htmlCode.textContent = html;
   cssCode.textContent = dynamicStyles;
 }
+function generateInputField() {
+  // Get class names
+  const containerClass =
+    document.getElementById("inputClassName").value || "generated-input-group";
+  const labelClass = `${containerClass}-label`;
+  const inputClass = `${containerClass}-input`;
+  const helpClass = `${containerClass}-helptext`;
+
+  // Get content values
+  const labelText = document.getElementById("labelText").value || "Label";
+  const inputType = document.getElementById("inputType").value || "text";
+  const placeholder = document.getElementById("placeholderText").value || "";
+  const showHelp = document.getElementById("showHelpText").checked;
+  const helpText = document.getElementById("helpText").value || "";
+
+  // Get style values
+  const labelColor = document.getElementById("labelColor").value || "#333333";
+  const textColor =
+    document.getElementById("inputTextColor").value || "#333333";
+  const bgColor = document.getElementById("inputBgColor").value || "#ffffff";
+  const borderColor = document.getElementById("borderColor").value || "#cccccc";
+  const focusColor = document.getElementById("focusColor").value || "#3a86ff";
+  const borderRadius = document.getElementById("borderRadius").value || "4";
+  const width = document.getElementById("inputWidth").value || "100";
+
+  // Generate CSS
+  const dynamicStyles = `
+    .${containerClass} {
+      margin-bottom: 1.5rem;
+      font-family: 'Poppins', sans-serif;
+      width: ${width}%;
+    }
+    
+    .${labelClass} {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: ${labelColor};
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .${inputClass} {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid ${borderColor};
+      border-radius: ${borderRadius}px;
+      background-color: ${bgColor};
+      color: ${textColor};
+      font-size: 14px;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    
+    .${inputClass}:focus {
+      outline: none;
+      border-color: ${focusColor};
+      box-shadow: 0 0 0 2px ${hexToRgba(focusColor, 0.2)};
+    }
+    
+    .${helpClass} {
+      display: ${showHelp ? "block" : "none"};
+      margin-top: 0.5rem;
+      font-size: 12px;
+      color: #666;
+    }
+    
+    textarea.${inputClass} {
+      min-height: 100px;
+      resize: vertical;
+    }
+  `;
+
+  document.getElementById("dynamicStyles").textContent = dynamicStyles;
+
+  // Create elements
+  const container = document.createElement("div");
+  container.className = containerClass;
+
+  const label = document.createElement("label");
+  label.className = labelClass;
+  label.textContent = labelText;
+
+  const input =
+    inputType === "textarea"
+      ? document.createElement("textarea")
+      : document.createElement("input");
+
+  input.className = inputClass;
+  if (inputType !== "textarea") input.type = inputType;
+  input.placeholder = placeholder;
+
+  container.appendChild(label);
+  container.appendChild(input);
+
+  if (helpText) {
+    const help = document.createElement("small");
+    help.className = helpClass;
+    help.textContent = helpText;
+    container.appendChild(help);
+  }
+
+  // Display output
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = "";
+  elementOutput.appendChild(container);
+
+  // Generate code
+  const htmlCode = document.getElementById("htmlCode");
+  const cssCode = document.getElementById("cssCode");
+
+  let html = `<div class="${containerClass}">\n`;
+  html += `  <label class="${labelClass}">${labelText}</label>\n`;
+  html +=
+    inputType === "textarea"
+      ? `  <textarea class="${inputClass}" placeholder="${placeholder}" rows="4"></textarea>\n`
+      : `  <input type="${inputType}" class="${inputClass}" placeholder="${placeholder}">\n`;
+
+  if (helpText) {
+    html += `  <small class="${helpClass}">${helpText}</small>\n`;
+  }
+  html += `</div>`;
+
+  htmlCode.textContent = html;
+  cssCode.textContent = dynamicStyles;
+}
+
+// Helper function
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 export {
   generateHeader,
@@ -721,4 +854,5 @@ export {
   generateForm,
   generateCard,
   generateFlexContainer,
+  generateInputField,
 };
