@@ -858,7 +858,285 @@ function hexToRgba(hex, alpha) {
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+function generateHero() {
+  const className =
+    document.getElementById("className").value || "generated-hero";
+  const heroTitle =
+    document.getElementById("heroTitle").value || "Welcome to Our Website";
+  const heroSubtitle =
+    document.getElementById("heroSubtitle").value ||
+    "Discover amazing features and services";
+  const heroLayout = document.getElementById("heroLayout").value || "centered";
+  const bgColor = document.getElementById("heroBgColor").value || "#4a6bff";
+  const textColor = document.getElementById("heroTextColor").value || "#ffffff";
+  const heroHeight = document.getElementById("heroHeight").value || "medium";
+  const heroPadding = document.getElementById("heroPadding").value || "40";
+  const includeButton = document.getElementById("includeButton").checked;
+  const buttonText =
+    document.getElementById("heroButtonText")?.value || "Get Started";
+  const useGradient = document.getElementById("heroGradient").checked;
+  const gradientColor =
+    document.getElementById("heroGradientColor")?.value || "#8a2be2";
+  const useOverlay = document.getElementById("heroOverlay").checked;
+  const useAnimation = document.getElementById("heroAnimation").checked;
 
+  // Define height based on selection
+  let heightValue;
+  switch (heroHeight) {
+    case "small":
+      heightValue = "300px";
+      break;
+    case "medium":
+      heightValue = "500px";
+      break;
+    case "large":
+      heightValue = "700px";
+      break;
+    case "fullscreen":
+      heightValue = "100vh";
+      break;
+    default:
+      heightValue = "500px";
+  }
+
+  // Create CSS
+  let dynamicStyles = `.${className} {
+    position: relative;
+    width: 100%;
+    height: ${heightValue};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: ${heroPadding}px;
+    overflow: hidden;
+    ${
+      useGradient
+        ? `background: linear-gradient(135deg, ${bgColor}, ${gradientColor});`
+        : `background-color: ${bgColor};`
+    }
+  }\n
+  
+  ${
+    useOverlay
+      ? `.${className}::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }\n`
+      : ""
+  }
+  
+  .${className}-content {
+    ${
+      heroLayout === "centered"
+        ? "text-align: center;"
+        : heroLayout === "left-aligned"
+        ? "text-align: left;"
+        : heroLayout === "right-aligned"
+        ? "text-align: right;"
+        : ""
+    }
+    max-width: 1200px;
+    color: ${textColor};
+    position: relative;
+    z-index: 2;
+    ${
+      heroLayout === "split"
+        ? "display: flex; justify-content: space-between; align-items: center; width: 100%;"
+        : ""
+    }
+  }\n
+  
+  .${className}-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    ${useAnimation ? "animation: fadeInDown 1s ease-out;" : ""}
+  }\n
+  
+  .${className}-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    ${
+      useAnimation
+        ? "animation: fadeInUp 1s ease-out 0.3s forwards; opacity: 0;"
+        : ""
+    }
+  }\n
+  
+  .${className}-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: ${bgColor};
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    ${
+      useAnimation
+        ? "animation: fadeIn 1s ease-out 0.6s forwards; opacity: 0;"
+        : ""
+    }
+  }\n
+  
+  .${className}-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }\n
+  
+  ${
+    useAnimation
+      ? `@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }\n`
+      : ""
+  }`;
+
+  document.getElementById("dynamicStyles").textContent = dynamicStyles;
+
+  // Create HTML
+  const heroSection = document.createElement("section");
+  heroSection.classList.add(className);
+
+  const heroContent = document.createElement("div");
+  heroContent.classList.add(`${className}-content`);
+
+  // For split layout, create two containers
+  if (heroLayout === "split") {
+    const leftSide = document.createElement("div");
+    leftSide.classList.add(`${className}-text`);
+    leftSide.style.width = "50%";
+
+    const heading = document.createElement("h1");
+    heading.classList.add(`${className}-title`);
+    heading.textContent = heroTitle;
+
+    const subtitle = document.createElement("p");
+    subtitle.classList.add(`${className}-subtitle`);
+    subtitle.textContent = heroSubtitle;
+
+    leftSide.appendChild(heading);
+    leftSide.appendChild(subtitle);
+
+    if (includeButton) {
+      const button = document.createElement("a");
+      button.classList.add(`${className}-button`);
+      button.href = "#";
+      button.textContent = buttonText;
+      leftSide.appendChild(button);
+    }
+
+    const rightSide = document.createElement("div");
+    rightSide.classList.add(`${className}-image`);
+    rightSide.style.width = "40%";
+    rightSide.style.height = "300px";
+    rightSide.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+    rightSide.style.borderRadius = "10px";
+
+    heroContent.appendChild(leftSide);
+    heroContent.appendChild(rightSide);
+  } else {
+    // Standard layout
+    const heading = document.createElement("h1");
+    heading.classList.add(`${className}-title`);
+    heading.textContent = heroTitle;
+
+    const subtitle = document.createElement("p");
+    subtitle.classList.add(`${className}-subtitle`);
+    subtitle.textContent = heroSubtitle;
+
+    heroContent.appendChild(heading);
+    heroContent.appendChild(subtitle);
+
+    if (includeButton) {
+      const button = document.createElement("a");
+      button.classList.add(`${className}-button`);
+      button.href = "#";
+      button.textContent = buttonText;
+      heroContent.appendChild(button);
+    }
+  }
+
+  heroSection.appendChild(heroContent);
+
+  // Output HTML and CSS
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = "";
+  elementOutput.appendChild(heroSection);
+
+  // Generate code for display
+  let htmlCode = "";
+
+  if (heroLayout === "split") {
+    htmlCode = `<section class="${className}">
+  <div class="${className}-content">
+    <div class="${className}-text">
+      <h1 class="${className}-title">${heroTitle}</h1>
+      <p class="${className}-subtitle">${heroSubtitle}</p>
+      ${
+        includeButton
+          ? `<a href="#" class="${className}-button">${buttonText}</a>`
+          : ""
+      }
+    </div>
+    <div class="${className}-image">
+      <!-- Your image or content here -->
+    </div>
+  </div>
+</section>`;
+  } else {
+    htmlCode = `<section class="${className}">
+  <div class="${className}-content">
+    <h1 class="${className}-title">${heroTitle}</h1>
+    <p class="${className}-subtitle">${heroSubtitle}</p>
+    ${
+      includeButton
+        ? `<a href="#" class="${className}-button">${buttonText}</a>`
+        : ""
+    }
+  </div>
+</section>`;
+  }
+
+  document.getElementById("htmlCode").textContent = htmlCode;
+  document.getElementById("cssCode").textContent = dynamicStyles;
+
+  // Add event listeners for toggled options
+  document
+    .getElementById("heroGradient")
+    .addEventListener("change", function () {
+      document.getElementById("heroGradientColorGroup").style.display = this
+        .checked
+        ? "block"
+        : "none";
+    });
+
+  document
+    .getElementById("includeButton")
+    .addEventListener("change", function () {
+      document.getElementById("buttonTextGroup").style.display = this.checked
+        ? "block"
+        : "none";
+    });
+}
 export {
   generateHeader,
   generateNavbar,
@@ -868,4 +1146,5 @@ export {
   generateCard,
   generateFlexContainer,
   generateInputField,
+  generateHero,
 };
