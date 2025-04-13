@@ -8,6 +8,7 @@ import {
   generateCard,
   generateFlexContainer,
   generateInputField,
+  generateHero,
 } from "./elementsGenerators.js";
 // Copy to clipboard functionality
 function setupCopyButtons() {
@@ -70,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerCard = document.getElementById("footerCard");
   const flexCard = document.getElementById("flexCard");
   const inputCard = document.getElementById("inputCard");
+  const heroCard = document.getElementById("heroCard");
 
   // Get customization page elements
   const welcomePage = document.getElementById("welcomePage");
@@ -135,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
       case "input-field":
         generateInputField();
         break;
+      case "hero":
+        generateHero();
     }
   }
 
@@ -149,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
   inputCard.addEventListener("click", () =>
     showCustomizationPage("input-field")
   );
+  heroCard.addEventListener("click", () => showCustomizationPage("hero"));
 
   // Event listener for back button
   backButton.addEventListener("click", showWelcomePage);

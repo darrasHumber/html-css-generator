@@ -503,6 +503,88 @@ export function getElementControls(element) {
       <input type="number" id="inputWidth" value="100" min="10" max="100">
     </div>
   `;
+    case "hero":
+      return `
+    <div class="form-group">
+      <label for="className">Class Name:</label>
+      <input type="text" id="className" value="${defaultClassName}">
+    </div>
+    
+    <div class="form-group">
+      <label for="heroTitle">Main Heading:</label>
+      <input type="text" id="heroTitle" value="Welcome to Our Website">
+    </div>
+    
+    <div class="form-group">
+      <label for="heroSubtitle">Subtitle:</label>
+      <input type="text" id="heroSubtitle" value="Discover amazing features and services">
+    </div>
+    
+    <div class="form-group">
+      <label for="heroLayout">Layout Style:</label>
+      <select id="heroLayout">
+        <option value="centered">Centered</option>
+        <option value="left-aligned">Left Aligned</option>
+        <option value="right-aligned">Right Aligned</option>
+        <option value="split">Split Content</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="heroBgColor">Background Color:</label>
+      <input type="color" id="heroBgColor" value="#4a6bff">
+    </div>
+    
+    <div class="form-group checkbox">
+      <input type="checkbox" id="heroGradient">
+      <label for="heroGradient">Use Gradient Background</label>
+    </div>
+    
+    <div class="form-group" id="heroGradientColorGroup" style="display:none;">
+      <label for="heroGradientColor">Secondary Color:</label>
+      <input type="color" id="heroGradientColor" value="#8a2be2">
+    </div>
+    
+    <div class="form-group">
+      <label for="heroTextColor">Text Color:</label>
+      <input type="color" id="heroTextColor" value="#ffffff">
+    </div>
+    
+    <div class="form-group">
+      <label for="heroHeight">Height:</label>
+      <select id="heroHeight">
+        <option value="small">Small (300px)</option>
+        <option value="medium" selected>Medium (500px)</option>
+        <option value="large">Large (700px)</option>
+        <option value="fullscreen">Fullscreen</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="heroPadding">Padding (px):</label>
+      <input type="number" id="heroPadding" value="40" min="0" max="200">
+    </div>
+    
+    <div class="form-group checkbox">
+      <input type="checkbox" id="includeButton" checked>
+      <label for="includeButton">Include Call-to-Action Button</label>
+    </div>
+    
+    <div class="form-group" id="buttonTextGroup">
+      <label for="heroButtonText">Button Text:</label>
+      <input type="text" id="heroButtonText" value="Get Started">
+    </div>
+    
+    <div class="form-group checkbox">
+      <input type="checkbox" id="heroOverlay">
+      <label for="heroOverlay">Add Dark Overlay</label>
+    </div>
+    
+    <div class="form-group checkbox">
+      <input type="checkbox" id="heroAnimation">
+      <label for="heroAnimation">Add Animation Effect</label>
+    </div>
+  `;
     default:
       return "";
   }
