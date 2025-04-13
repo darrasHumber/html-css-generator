@@ -238,39 +238,63 @@ export function getElementControls(element) {
           `;
     case "footer":
       return `
-        <div class="form-group">
-          <label for="className">Class Name:</label>
-          <input type="text" id="className" value="${defaultClassName}">
-        </div>
-        <div class="form-group">
-          <label for="footerText">Footer Text:</label>
-          <input type="text" id="footerText" placeholder="Enter footer text">
-        </div>
-        <div class="form-group">
-          <label for="footerBgColor">Background Color:</label>
-          <input type="color" id="footerBgColor" value="#333333">
-        </div>
-        <div class="form-group">
-          <label for="footerTextColor">Text Color:</label>
-          <input type="color" id="footerTextColor" value="#ffffff">
-        </div>
-        <div class="form-group">
-          <label for="footerPadding">Padding (px):</label>
-          <input type="number" id="footerPadding" placeholder="e.g., 10">
-        </div>
-        <div class="form-group">
-          <label for="footerMargin">Margin (px):</label>
-          <input type="number" id="footerMargin" placeholder="e.g., 10">
-        </div>
-        <div class="form-group">
-          <label for="footerAlignment">Alignment:</label>
-          <select id="footerAlignment">
-            <option value="left">Left</option>
-            <option value="center" selected>Center</option>
-            <option value="right">Right</option>
-          </select>
-        </div>
-      `;
+              <div class="form-group">
+                <label for="className">Class Name:</label>
+                <input type="text" id="className" value="${defaultClassName}">
+              </div>
+              
+              <div class="form-group">
+                <label for="footerStyle">Footer Style:</label>
+                <select id="footerStyle">
+                  <option value="simple">Simple</option>
+                  <option value="two-column">Two Column</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="footerText">Copyright Text:</label>
+                <input type="text" id="footerText" value="© 2025 Your Company. All rights reserved." placeholder="Enter footer text">
+              </div>
+              
+              <div class="form-group checkbox">
+                <input type="checkbox" id="includeLinks" checked>
+                <label for="includeLinks">Include Links</label>
+              </div>
+              
+              <div class="form-group" id="linksGroup">
+                <label for="footerLinks">Links (comma separated):</label>
+                <input type="text" id="footerLinks" value="Home, About, Contact" placeholder="Home, About, Contact">
+              </div>
+              
+              <div class="form-group">
+                <label for="footerBgColor">Background Color:</label>
+                <input type="color" id="footerBgColor" value="#333333">
+              </div>
+              
+              <div class="form-group">
+                <label for="footerTextColor">Text Color:</label>
+                <input type="color" id="footerTextColor" value="#ffffff">
+              </div>
+              
+              <div class="form-group">
+                <label for="footerLinkColor">Link Color:</label>
+                <input type="color" id="footerLinkColor" value="#aaaaaa">
+              </div>
+              
+              <div class="form-group">
+                <label for="footerPadding">Padding (px):</label>
+                <input type="number" id="footerPadding" value="30" min="0" max="100">
+              </div>
+              
+              <div class="form-group">
+                <label for="footerAlignment">Alignment:</label>
+                <select id="footerAlignment">
+                  <option value="left">Left</option>
+                  <option value="center" selected>Center</option>
+                  <option value="right">Right</option>
+                </select>
+              </div>
+            `;
     case "form":
       return `
     <div class="form-group">
