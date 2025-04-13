@@ -320,33 +320,136 @@ function generateFooter() {
   // Gather inputs with fallback default values
   const className =
     document.getElementById("className").value || "generated-footer";
-  const footerText = document.getElementById("footerText").value;
+  const footerStyle = document.getElementById("footerStyle").value || "simple";
+  const footerText =
+    document.getElementById("footerText").value ||
+    "© 2025 Your Company. All rights reserved.";
+  const includeLinks = document.getElementById("includeLinks").checked;
+  const footerLinks = document
+    .getElementById("footerLinks")
+    .value.split(",")
+    .map((link) => link.trim());
   const bgColor = document.getElementById("footerBgColor").value || "#333333";
   const textColor =
     document.getElementById("footerTextColor").value || "#ffffff";
-  const padding = document.getElementById("footerPadding").value || "10";
-  const margin = document.getElementById("footerMargin").value || "10";
+  const linkColor =
+    document.getElementById("footerLinkColor").value || "#aaaaaa";
+  const padding = document.getElementById("footerPadding").value || "30";
   const alignment =
     document.getElementById("footerAlignment").value || "center";
 
   // Build dynamic CSS for the footer
-  const dynamicStyles = `
+  let dynamicStyles = `
     .${className} {
       background-color: ${bgColor};
       color: ${textColor};
       padding: ${padding}px;
-      margin: ${margin}px;
       text-align: ${alignment};
-      border-radius: 4px;
+    }
+    
+    .${className} a {
+      color: ${linkColor};
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .${className} a:hover {
+      color: ${textColor};
+    }
+    
+    .${className}-container {
+      max-width: 1200px;
+      margin: 0 auto;
     }
   `;
+
+  if (footerStyle === "two-column") {
+    dynamicStyles += `
+      .${className}-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .${className}-links {
+        display: flex;
+        gap: 20px;
+      }
+      
+      @media (max-width: 768px) {
+        .${className}-container {
+          flex-direction: column;
+        }
+        
+        .${className}-links {
+          margin-bottom: 15px;
+        }
+      }
+    `;
+  } else {
+    dynamicStyles += `
+      .${className}-links {
+        margin-bottom: 15px;
+      }
+      
+      .${className}-links a {
+        margin: 0 10px;
+      }
+    `;
+  }
+
   // Inject the dynamic styles into the page
   document.getElementById("dynamicStyles").textContent = dynamicStyles;
 
   // Create the footer element
   const footer = document.createElement("footer");
-  footer.textContent = footerText;
   footer.classList.add(className);
+
+  const footerContainer = document.createElement("div");
+  footerContainer.classList.add(`${className}-container`);
+
+  // Build footer based on style selection
+  if (footerStyle === "simple") {
+    // Simple footer
+    if (includeLinks) {
+      const linksDiv = document.createElement("div");
+      linksDiv.classList.add(`${className}-links`);
+
+      footerLinks.forEach((link) => {
+        const anchor = document.createElement("a");
+        anchor.href = "#";
+        anchor.textContent = link;
+        linksDiv.appendChild(anchor);
+      });
+
+      footerContainer.appendChild(linksDiv);
+    }
+
+    const copyright = document.createElement("p");
+    copyright.textContent = footerText;
+    footerContainer.appendChild(copyright);
+  } else if (footerStyle === "two-column") {
+    // Two-column footer
+    if (includeLinks) {
+      const linksDiv = document.createElement("div");
+      linksDiv.classList.add(`${className}-links`);
+
+      footerLinks.forEach((link) => {
+        const anchor = document.createElement("a");
+        anchor.href = "#";
+        anchor.textContent = link;
+        linksDiv.appendChild(anchor);
+      });
+
+      footerContainer.appendChild(linksDiv);
+    }
+
+    const copyright = document.createElement("p");
+    copyright.textContent = footerText;
+    footerContainer.appendChild(copyright);
+  }
+
+  footer.appendChild(footerContainer);
 
   // Display the footer element in the output area
   const elementOutput = document.getElementById("elementOutput");
@@ -354,14 +457,47 @@ function generateFooter() {
   elementOutput.appendChild(footer);
 
   // Generate HTML and CSS code snippets for display
-  const htmlCode = document.getElementById("htmlCode");
-  const cssCode = document.getElementById("cssCode");
-  htmlCode.textContent = `
-<footer class="${className}">
-  ${footerText}
-</footer>
-  `;
-  cssCode.textContent = dynamicStyles;
+  let htmlCode = "";
+
+  if (footerStyle === "simple") {
+    htmlCode = `<footer class="${className}">
+  <div class="${className}-container">
+    ${
+      includeLinks
+        ? `<div class="${className}-links">
+      ${footerLinks.map((link) => `<a href="#">${link}</a>`).join("\n      ")}
+    </div>`
+        : ""
+    }
+    <p>${footerText}</p>
+  </div>
+</footer>`;
+  } else if (footerStyle === "two-column") {
+    htmlCode = `<footer class="${className}">
+  <div class="${className}-container">
+    ${
+      includeLinks
+        ? `<div class="${className}-links">
+      ${footerLinks.map((link) => `<a href="#">${link}</a>`).join("\n      ")}
+    </div>`
+        : ""
+    }
+    <p>${footerText}</p>
+  </div>
+</footer>`;
+  }
+
+  document.getElementById("htmlCode").textContent = htmlCode;
+  document.getElementById("cssCode").textContent = dynamicStyles;
+
+  // Add event listener for links toggle
+  document
+    .getElementById("includeLinks")
+    .addEventListener("change", function () {
+      document.getElementById("linksGroup").style.display = this.checked
+        ? "block"
+        : "none";
+    });
 }
 
 function generateForm() {
