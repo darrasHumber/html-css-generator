@@ -290,7 +290,7 @@ header p {
   margin-bottom: 1.5rem;
   color: var(--primary-color);
   transition: all 0.5s var(--ease-smooth);
-  animation: floatSmooth 4s ease-in-out infinite;
+  animation: floatSmooth 4s ease-in-out 2;
   display: inline-block;
   position: relative;
   background: linear-gradient(

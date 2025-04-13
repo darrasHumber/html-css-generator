@@ -164,22 +164,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const typed = new Typed("header p", {
     strings: [
-      "Craft your perfect web elements with ease!",
       "Create beautiful UI components in seconds",
-      "Generate and customize with a click",
     ],
     typeSpeed: 80,
-    backSpeed: 60,
     startDelay: 1500,
     backDelay: 2000,
-    loop: true,
+    loop: false,
     showCursor: true,
-    cursorChar: "|",
+    cursorChar: " ",
     fadeOut: false,
     fadeOutClass: "",
     fadeOutDelay: 0,
     smartBackspace: true,
   });
+
+  /*const typed2 = new Typed("footer p", {
+    strings: [,
+      "Hashim",
+      "Darras",
+      "Farhad"
+    ],
+    typeSpeed: 80,
+    startDelay: 1500,
+    backDelay: 2000,
+    loop: false,
+    showCursor: true,
+    cursorChar: " ",
+    fadeOut: false,
+    fadeOutClass: "",
+    fadeOutDelay: 0,
+    smartBackspace: true,
+  }); */
 
   // Add animation classes to cards with delay
   const cards = document.querySelectorAll(".element-card");
