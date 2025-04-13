@@ -64,7 +64,7 @@ function generateHeader() {
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
 
-  htmlCode.textContent = `<${headerType} class="${className}">${headerText}</${headerType}>`;
+  htmlCode.textContent = `<${headerType} class="${className}">\n  ${headerText}\n</${headerType}>`;
   cssCode.textContent = dynamicStyles;
 }
 // Function to generate the navbar
@@ -166,11 +166,17 @@ function generateNavbar() {
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
 
-  let html = `<nav class="${className}"><ul class="${className}-container">`;
+  let html = `<nav class="${className}">
+  <ul class="${className}-container">\n\t`;
   html += navbarItems
-    .map((item) => `<li><a href="#" class="${navLinkClass}">${item}</a></li>`)
-    .join("");
-  html += `</ul></nav>`;
+    .map(
+      (item) => `<li>
+          <a href="#" class="${navLinkClass}">${item}</a>
+       </li>`
+    )
+    .join("\n\t");
+  html += `\n  </ul>
+  </nav>`;
 
   htmlCode.textContent = html;
   cssCode.textContent = dynamicStyles;
@@ -302,9 +308,9 @@ function generateButton() {
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
 
-  let html = `<button class="${className}">`;
-  if (hasIcon) html += `<i class="fas ${iconClass} ${className}-icon"></i>`;
-  html += `${buttonText}</button>`;
+  let html = `<button class="${className}">\n`;
+  if (hasIcon) html += `\t<i class="fas ${iconClass} ${className}-icon"></i>`;
+  html += `\n\t${buttonText}\n</button>`;
 
   htmlCode.textContent = html;
   cssCode.textContent = dynamicStyles;
@@ -633,12 +639,16 @@ box-shadow:0 8px 16px rgba(0,0,0,0.1);
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
 
-  let html = `<div class="${className}">`;
-  html += `<h3 class="${className}-title">${cardTitle}</h3>`;
-  html += `<p class="${className}-text">${cardText}</p>`;
+  let html = `<div class="${className}">\n`;
+  html += `   <h3 class="${className}-title">\n    ${cardTitle}\n   </h3>\n`;
+  html += `   <p class="${className}-text">
+      ${cardText}
+  </p>`;
   if (hasButton)
-    html += `<button class="${className}-button">${buttonText}</button>`;
-  html += `</div>`;
+    html += `\n  <button class="${className}-button">
+        ${buttonText}
+  </button>`;
+  html += `\n</div>`;
 
   htmlCode.textContent = html;
   cssCode.textContent = dynamicStyles;
@@ -827,10 +837,13 @@ function generateInputField() {
   html +=
     inputType === "textarea"
       ? `  <textarea class="${inputClass}" placeholder="${placeholder}" rows="4"></textarea>\n`
-      : `  <input type="${inputType}" class="${inputClass}" placeholder="${placeholder}">\n`;
+      : `  <input type="${inputType}" class="${inputClass}" 
+             placeholder="${placeholder}">\n`;
 
   if (helpText) {
-    html += `  <small class="${helpClass}">${helpText}</small>\n`;
+    html += `  <small class="${helpClass}">
+      ${helpText}
+  </small>\n`;
   }
   html += `</div>`;
 
