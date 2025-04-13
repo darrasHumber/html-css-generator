@@ -511,133 +511,21 @@ h1 {
 #elementOutput {
   background-color: var(--card-bg);
   border-radius: 16px;
-  padding: 30px;
+  padding: 25px;
   box-shadow: var(--box-shadow);
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
+  min-height: 100px;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   border: 1px solid rgba(0, 0, 0, 0.08);
-  position: relative;
-  overflow: hidden;
-}
-
-#elementOutput::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: linear-gradient(
-    90deg,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-  border-radius: 16px 16px 0 0;
-  opacity: 0.7;
-}
-
-.output::before {
-  content: "Preview";
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  background-color: var(--card-bg);
-  padding: 2px 10px;
-  font-size: 0.85rem;
-  border-radius: 4px;
-  color: var(--primary-color);
-  font-weight: 500;
-  z-index: 1;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-/* Generated element container */
-#elementOutput > * {
-  max-width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
 }
 
 /* Specific styling for different element types */
 /* Generated Headers */
-#elementOutput h1,
-#elementOutput h2,
-#elementOutput h3,
-#elementOutput h4,
-#elementOutput h5,
-#elementOutput h6 {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-/* Generated Navbar */
-#elementOutput .generated-navbar {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-#elementOutput .generated-navbar.vertical {
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Generated Cards */
-#elementOutput .generated-card {
-  width: 100%;
-  max-width: 350px;
-}
-
-/* Generated Buttons */
-#elementOutput .generated-button {
-  display: inline-block;
-  margin: 10px auto;
-}
-
-/* Generated Forms */
-#elementOutput form {
-  width: 100%;
-  max-width: 400px;
-}
-
-#elementOutput .generated-form {
-  width: 100%;
-  max-width: 400px;
-}
-
-/* Generated Input Fields */
-#elementOutput .generated-input-group {
-  width: 100%;
-  max-width: 350px;
-  margin-bottom: 15px;
-}
-
-/* Generated Flex Container */
-#elementOutput .flex-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
-}
-
-/* Footer styling */
-#elementOutput .generated-footer {
-  width: 100%;
-  text-align: center;
-  padding: 15px;
-  margin-top: 20px;
-}
-
-/* Ensure all output content is properly spaced */
-#elementOutput > *:not(:last-child) {
-  margin-bottom: 15px;
+#elementOutput h1 {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: inherit;
 }
 
 .code-output {
