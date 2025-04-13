@@ -31,7 +31,7 @@ function generateHeader() {
   // Dynamic CSS
   const dynamicStyles = `
     .${className} {
-      font-size: ${fontSize}px;
+      /*font-size: ${fontSize}px;*/
       color: ${textColor};
       background-color: ${backgroundColor};
       padding: ${padding}px;
