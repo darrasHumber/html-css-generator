@@ -166,7 +166,7 @@ header p {
   animation-delay: 0.4s;
 }
 
-h1 {
+.appHeader {
   font-size: 3rem;
   margin-bottom: 0.5rem;
   background: linear-gradient(
@@ -502,7 +502,7 @@ h1 {
   position: relative;
 }
 
-.output h3 {
+.outputHeader {
   margin-bottom: 15px;
   font-size: 1.2rem;
   color: var(--primary-color);
@@ -522,11 +522,11 @@ h1 {
 
 /* Specific styling for different element types */
 /* Generated Headers */
-#elementOutput h1 {
+/* #elementOutput h1 {
   background: none;
   -webkit-text-fill-color: initial;
   color: inherit;
-}
+} */
 
 .code-output {
   margin-top: 30px;
@@ -772,8 +772,8 @@ button {
 }
 
 /* Generated Output Overrides */
-#elementOutput h1 {
+/* #elementOutput h1 {
   background: none;
   -webkit-text-fill-color: initial;
   color: inherit;
-}
+} */
