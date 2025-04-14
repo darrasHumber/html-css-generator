@@ -609,6 +609,249 @@ export function getElementControls(element) {
       <label for="heroAnimation">Add Animation Effect</label>
     </div>
   `;
+  case "modalpopup":
+case "modalPopup":
+  return `
+    <!-- Basic Modal Content Controls -->
+    <div class="form-group">
+      <label for="openButtonText">Open Button Text:</label>
+      <input type="text" id="openButtonText" value="Open Modal">
+    </div>
+    <div class="form-group">
+      <label for="modalContent">Modal Content:</label>
+      <textarea id="modalContent" rows="4" placeholder="Enter modal content">This is a modal popup! You can place any content here.</textarea>
+    </div>
+    <hr>
+    <!-- Open Button Styling -->
+    <div class="form-group">
+      <label for="modalOpenButtonBgColor">Open Button Background Color:</label>
+      <input type="color" id="modalOpenButtonBgColor" value="#4361ee">
+    </div>
+    <div class="form-group">
+      <label for="modalOpenButtonFontColor">Open Button Font Color:</label>
+      <input type="color" id="modalOpenButtonFontColor" value="#ffffff">
+    </div>
+    <div class="form-group">
+      <label for="modalOpenButtonFontSize">Open Button Font Size (e.g., 1rem):</label>
+      <input type="text" id="modalOpenButtonFontSize" value="1rem">
+    </div>
+    <hr>
+    <!-- Modal Overlay Styling -->
+    <div class="form-group checkbox">
+      <input type="checkbox" id="modalGradient">
+      <label for="modalGradient">Use Gradient Overlay</label>
+    </div>
+    <div class="form-group" id="modalGradientGroup" style="display:none;">
+      <label for="modalGradientStart">Gradient Start Color:</label>
+      <input type="color" id="modalGradientStart" value="#000000">
+      <label for="modalGradientEnd">Gradient End Color:</label>
+      <input type="color" id="modalGradientEnd" value="#333333">
+    </div>
+    <div class="form-group" id="modalBgGroup" style="display:none;">
+      <label for="modalBgColor">Modal Background Color:</label>
+      <input type="color" id="modalBgColor" value="rgba(0,0,0,0.5)">
+    </div>
+    <hr>
+    <!-- Modal Content Styling -->
+    <div class="form-group">
+      <label for="modalContentBgColor">Modal Content Background Color:</label>
+      <input type="color" id="modalContentBgColor" value="#fefefe">
+    </div>
+    <div class="form-group">
+      <label for="modalContentFont">Modal Content Font:</label>
+      <select id="modalContentFont">
+        <option value="'Poppins', sans-serif" selected>Poppins</option>
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="'Times New Roman', serif">Times New Roman</option>
+        <option value="'Courier New', monospace">Courier New</option>
+        <option value="'Roboto', sans-serif">Roboto</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="modalContentFontColor">Modal Content Font Color:</label>
+      <input type="color" id="modalContentFontColor" value="#333333">
+    </div>
+  `;
+
+           
+  case "progressbar":
+  return `
+    <div class="form-group">
+      <label for="progressBarHeight">Progress Bar Height (e.g., 25px):</label>
+      <input type="text" id="progressBarHeight" value="25px">
+    </div>
+    <div class="form-group">
+      <label for="progressBarFont">Progress Bar Font:</label>
+      <select id="progressBarFont">
+        <option value="'Poppins', sans-serif" selected>Poppins</option>
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="'Times New Roman', serif">Times New Roman</option>
+        <option value="'Courier New', monospace">Courier New</option>
+        <option value="'Roboto', sans-serif">Roboto</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="progressBarFontSize">Progress Bar Font Size (rem):</label>
+      <input type="number" id="progressBarFontSize" value="1" step="0.1" min="0.5" max="3">
+    </div>
+    <div class="form-group">
+      <label for="progressBarFontColor">Progress Bar Font Color:</label>
+      <input type="color" id="progressBarFontColor" value="#ffffff">
+    </div>
+    <hr>
+    <h3>Success Bar</h3>
+    <div class="form-group">
+      <label for="progressBarSuccessPercent">Success Percentage:</label>
+      <input type="number" id="progressBarSuccessPercent" value="40" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="progressBarSuccessText">Success Text:</label>
+      <input type="text" id="progressBarSuccessText" value="40% Complete (success)">
+    </div>
+    <div class="form-group">
+      <label for="progressBarSuccessColor">Success Color:</label>
+      <input type="color" id="progressBarSuccessColor" value="#5cb85c">
+    </div>
+    <hr>
+    <h3>Info Bar</h3>
+    <div class="form-group">
+      <label for="progressBarInfoPercent">Info Percentage:</label>
+      <input type="number" id="progressBarInfoPercent" value="50" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="progressBarInfoText">Info Text:</label>
+      <input type="text" id="progressBarInfoText" value="50% Complete (info)">
+    </div>
+    <div class="form-group">
+      <label for="progressBarInfoColor">Info Color:</label>
+      <input type="color" id="progressBarInfoColor" value="#5bc0de">
+    </div>
+    <hr>
+    <h3>Warning Bar</h3>
+    <div class="form-group">
+      <label for="progressBarWarningPercent">Warning Percentage:</label>
+      <input type="number" id="progressBarWarningPercent" value="60" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="progressBarWarningText">Warning Text:</label>
+      <input type="text" id="progressBarWarningText" value="60% Complete (warning)">
+    </div>
+    <div class="form-group">
+      <label for="progressBarWarningColor">Warning Color:</label>
+      <input type="color" id="progressBarWarningColor" value="#f0ad4e">
+    </div>
+    <hr>
+    <h3>Danger Bar</h3>
+    <div class="form-group">
+      <label for="progressBarDangerPercent">Danger Percentage:</label>
+      <input type="number" id="progressBarDangerPercent" value="70" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="progressBarDangerText">Danger Text:</label>
+      <input type="text" id="progressBarDangerText" value="70% Complete (danger)">
+    </div>
+    <div class="form-group">
+      <label for="progressBarDangerColor">Danger Color:</label>
+      <input type="color" id="progressBarDangerColor" value="#d9534f">
+    </div>
+  `;
+
+  case "counter":
+    return `
+  <div class="form-group">
+    <label for="counterCount">Number of Counters:</label>
+    <select id="counterCount">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3" selected>3</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="counterColor">Counter Number Color:</label>
+    <input type="color" id="counterColor" value="#4361ee">
+  </div>
+  <hr>
+  <h3>Counter 1</h3>
+  <div class="form-group">
+    <label for="state1Count">Counter 1 (Count To):</label>
+    <input type="number" id="state1Count" value="300">
+  </div>
+  <div class="form-group">
+    <label for="state1Title">Counter 1 Title:</label>
+    <input type="text" id="state1Title" value="Coded Elements">
+  </div>
+  <div class="form-group">
+    <label for="state1Desc">Counter 1 Description:</label>
+    <textarea id="state1Desc" rows="2">From buttons, to inputs, navbars, alerts or cards, you are covered</textarea>
+  </div>
+  <hr>
+  <h3>Counter 2</h3>
+  <div class="form-group">
+    <label for="state2Count">Counter 2 (Count To):</label>
+    <input type="number" id="state2Count" value="100">
+  </div>
+  <div class="form-group">
+    <label for="state2Title">Counter 2 Title:</label>
+    <input type="text" id="state2Title" value="Design Blocks">
+  </div>
+  <div class="form-group">
+    <label for="state2Desc">Counter 2 Description:</label>
+    <textarea id="state2Desc" rows="2">Mix the sections, change the colors and unleash your creativity</textarea>
+  </div>
+  <hr>
+  <h3>Counter 3</h3>
+  <div class="form-group">
+    <label for="state3Count">Counter 3 (Count To):</label>
+    <input type="number" id="state3Count" value="39">
+  </div>
+  <div class="form-group">
+    <label for="state3Title">Counter 3 Title:</label>
+    <input type="text" id="state3Title" value="Pages">
+  </div>
+  <div class="form-group">
+    <label for="state3Desc">Counter 3 Description:</label>
+    <textarea id="state3Desc" rows="2">Save 3-4 weeks of work when you use our pre-made pages for your website</textarea>
+  </div>
+  <hr>
+  <h3>Title &amp; Description Styling</h3>
+  <div class="form-group">
+    <label for="counterTitleFont">Title Font:</label>
+    <select id="counterTitleFont">
+      <option value="'Poppins', sans-serif" selected>Poppins</option>
+      <option value="Arial, sans-serif">Arial</option>
+      <option value="'Times New Roman', serif">Times New Roman</option>
+      <option value="'Courier New', monospace">Courier New</option>
+      <option value="'Roboto', sans-serif">Roboto</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="counterTitleFontSize">Title Font Size (rem):</label>
+    <input type="number" id="counterTitleFontSize" value="2.5" step="0.1" min="1" max="5">
+  </div>
+  <div class="form-group">
+    <label for="counterTitleColor">Title Color:</label>
+    <input type="color" id="counterTitleColor" value="#000000">
+  </div>
+  <div class="form-group">
+    <label for="counterDescFont">Description Font:</label>
+    <select id="counterDescFont">
+      <option value="'Poppins', sans-serif" selected>Poppins</option>
+      <option value="Arial, sans-serif">Arial</option>
+      <option value="'Times New Roman', serif">Times New Roman</option>
+      <option value="'Courier New', monospace">Courier New</option>
+      <option value="'Roboto', sans-serif">Roboto</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="counterDescFontSize">Description Font Size (rem):</label>
+    <input type="number" id="counterDescFontSize" value="1" step="0.1" min="0.5" max="3">
+  </div>
+  <div class="form-group">
+    <label for="counterDescColor">Description Color:</label>
+    <input type="color" id="counterDescColor" value="#666666">
+  </div>
+    `;
+
     default:
       return "";
   }

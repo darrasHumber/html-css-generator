@@ -9,11 +9,14 @@ import {
   generateFlexContainer,
   generateInputField,
   generateHero,
+  generateModalPopup,
+  generateProgressBar,
+  generateCounter,
 } from "./elementsGenerators.js";
 // Copy to clipboard functionality
 function setupCopyButtons() {
   document.addEventListener("click", (e) => {
-    if (e.target.matches(".html-copy-button, .css-copy-button")) {
+    if (e.target.matches(".html-copy-button, .css-copy-button, .js-copy-button")) {
       const targetId = e.target.getAttribute("data-target");
       const codeElement = document.getElementById(targetId);
 
@@ -72,6 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const flexCard = document.getElementById("flexCard");
   const inputCard = document.getElementById("inputCard");
   const heroCard = document.getElementById("heroCard");
+  const modalPopupCard = document.getElementById("modalPopupCard");
+  const progressBarCard = document.getElementById("progressBarCard");
+  const counterCard = document.getElementById("counterCard");
 
   // Get customization page elements
   const welcomePage = document.getElementById("welcomePage");
@@ -82,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const elementOutput = document.getElementById("elementOutput");
   const htmlCode = document.getElementById("htmlCode");
   const cssCode = document.getElementById("cssCode");
+  const jsCode = document.getElementById("jsCode");
 
   // Function to show a warning message
   function showWarning() {
@@ -99,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     elementOutput.innerHTML = "";
     htmlCode.textContent = "";
     cssCode.textContent = "";
+    jsCode.textContent="";
   }
 
   // Function to show the welcome page
@@ -139,6 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       case "hero":
         generateHero();
+      case "modalpopup":
+        generateModalPopup();
+        break;
+      case "progressbar":
+        generateProgressBar();
+        break;
+      case "counter":
+        generateCounter();
+        break;
     }
   }
 
@@ -154,6 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
     showCustomizationPage("input-field")
   );
   heroCard.addEventListener("click", () => showCustomizationPage("hero"));
+  progressBarCard.addEventListener("click", () => showCustomizationPage("progressbar"));
+  counterCard.addEventListener("click", () => showCustomizationPage("counter"));
+  modalPopupCard.addEventListener("click", () => showCustomizationPage("modalpopup"));
 
   // Event listener for back button
   backButton.addEventListener("click", showWelcomePage);
