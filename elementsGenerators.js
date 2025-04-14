@@ -1273,6 +1273,495 @@ function generateHero() {
         : "none";
     });
 }
+
+function generateModalPopup() {
+  // Retrieve basic content controls
+  const openButtonText = document.getElementById("openButtonText")?.value || "Open Modal";
+  const modalContent = document.getElementById("modalContent")?.value || "This is a modal popup! You can place any content here.";
+  
+  // Retrieve open button styling controls
+  const openButtonBgColor = document.getElementById("modalOpenButtonBgColor")?.value || "var(--primary-color)";
+  const openButtonFontColor = document.getElementById("modalOpenButtonFontColor")?.value || "#ffffff";
+  const openButtonFontSize = document.getElementById("modalOpenButtonFontSize")?.value || "1rem";
+  
+  // Retrieve modal overlay styling
+  const useGradientOverlay = document.getElementById("modalGradient")?.checked;
+  // If gradient is enabled, use gradient colors; otherwise, use flat color
+  const modalBgColor = useGradientOverlay 
+    ? `linear-gradient(135deg, ${document.getElementById("modalGradientStart")?.value || "#000000"}, ${document.getElementById("modalGradientEnd")?.value || "#333333"})`
+    : (document.getElementById("modalBgColor")?.value || "rgba(0,0,0,0.5)");
+  
+  // Retrieve modal content styling controls
+  const modalContentBgColor = document.getElementById("modalContentBgColor")?.value || "#fefefe";
+  const modalContentFont = document.getElementById("modalContentFont")?.value || "'Poppins', sans-serif";
+  const modalContentFontColor = document.getElementById("modalContentFontColor")?.value || "#333333";
+
+  // Build the HTML snippet with a button and a modal container.
+  // Note: Adding a div with class "modal-inner-content" inside the modal-content for the text.
+  const htmlSnippet = `
+<button id="openModal" class="generated-modal-button">${openButtonText}</button>
+<div id="modal" class="generated-modal">
+  <div class="generated-modal-content">
+    <span id="closeModal" class="generated-modal-close">&times;</span>
+    <div class="modal-inner-content">${modalContent}</div>
+  </div>
+</div>
+  `.trim();
+  
+  // Build the CSS snippet.
+  const cssSnippet = `
+/* Modal Overlay */
+.generated-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: ${modalBgColor};
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Content Container */
+.generated-modal-content {
+  background-color: ${modalContentBgColor};
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Modal Close Button */
+.generated-modal-close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.generated-modal-close:hover,
+.generated-modal-close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Open Button Styling */
+.generated-modal-button {
+  padding: 10px 20px;
+  background-color: ${openButtonBgColor};
+  color: ${openButtonFontColor};
+  font-size: ${openButtonFontSize};
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 20px 0;
+}
+.generated-modal-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Modal Inner Content Styling */
+.modal-inner-content {
+  font-family: ${modalContentFont};
+  color: ${modalContentFontColor};
+  font-size: 1rem;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+  `.trim();
+  
+  // Build the JS snippet to attach events with a slight delay.
+  const jsSnippet = `
+setTimeout(function(){
+  const openBtn = document.getElementById("openModal");
+  const modal = document.getElementById("modal");
+  const closeBtn = document.getElementById("closeModal");
+  if (openBtn && modal && closeBtn) {
+    openBtn.addEventListener("click", function() {
+      modal.style.display = "block";
+    });
+    closeBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+    window.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
+}, 50);
+  `.trim();
+  
+  // Inject the CSS into the dynamic style tag.
+  document.getElementById("dynamicStyles").textContent = cssSnippet;
+  
+  // Update the live view with the generated HTML.
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = htmlSnippet;
+  
+  // Execute the JavaScript to attach event listeners.
+  new Function(jsSnippet)();
+  
+  // Update the code output areas for copy functionality.
+  document.getElementById("htmlCode").textContent = htmlSnippet;
+  document.getElementById("cssCode").textContent = cssSnippet;
+  const jsCodeBlock = document.getElementById("jsCode");
+  if (jsCodeBlock) {
+    jsCodeBlock.textContent = jsSnippet;
+  }
+}
+
+
+
+function generateProgressBar() {
+  // Read common styling controls
+  const progressBarHeight = document.getElementById("progressBarHeight")
+    ? document.getElementById("progressBarHeight").value
+    : "25px";
+  const progressBarFont = document.getElementById("progressBarFont")
+    ? document.getElementById("progressBarFont").value
+    : "'Poppins', sans-serif";
+  const progressBarFontSize = document.getElementById("progressBarFontSize")
+    ? document.getElementById("progressBarFontSize").value
+    : "1rem";
+  const progressBarFontColor = document.getElementById("progressBarFontColor")
+    ? document.getElementById("progressBarFontColor").value
+    : "#ffffff";
+
+  // Success progress bar controls
+  const successPercent = document.getElementById("progressBarSuccessPercent")
+    ? document.getElementById("progressBarSuccessPercent").value
+    : 40;
+  const successText = document.getElementById("progressBarSuccessText")
+    ? document.getElementById("progressBarSuccessText").value
+    : "40% Complete (success)";
+  const successColor = document.getElementById("progressBarSuccessColor")
+    ? document.getElementById("progressBarSuccessColor").value
+    : "#5cb85c";
+
+  // Info progress bar controls
+  const infoPercent = document.getElementById("progressBarInfoPercent")
+    ? document.getElementById("progressBarInfoPercent").value
+    : 50;
+  const infoText = document.getElementById("progressBarInfoText")
+    ? document.getElementById("progressBarInfoText").value
+    : "50% Complete (info)";
+  const infoColor = document.getElementById("progressBarInfoColor")
+    ? document.getElementById("progressBarInfoColor").value
+    : "#5bc0de";
+
+  // Warning progress bar controls
+  const warningPercent = document.getElementById("progressBarWarningPercent")
+    ? document.getElementById("progressBarWarningPercent").value
+    : 60;
+  const warningText = document.getElementById("progressBarWarningText")
+    ? document.getElementById("progressBarWarningText").value
+    : "60% Complete (warning)";
+  const warningColor = document.getElementById("progressBarWarningColor")
+    ? document.getElementById("progressBarWarningColor").value
+    : "#f0ad4e";
+
+  // Danger progress bar controls
+  const dangerPercent = document.getElementById("progressBarDangerPercent")
+    ? document.getElementById("progressBarDangerPercent").value
+    : 70;
+  const dangerText = document.getElementById("progressBarDangerText")
+    ? document.getElementById("progressBarDangerText").value
+    : "70% Complete (danger)";
+  const dangerColor = document.getElementById("progressBarDangerColor")
+    ? document.getElementById("progressBarDangerColor").value
+    : "#d9534f";
+
+  // Build the HTML snippet for four progress bars.
+  // For animation purposes, we set the width initially to 0%.
+  let htmlSnippet = `
+<div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+    aria-valuemin="0" aria-valuemax="100" data-target="${successPercent}" style="width: 0%;">
+    ${successText}
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+    aria-valuemin="0" aria-valuemax="100" data-target="${infoPercent}" style="width: 0%;">
+    ${infoText}
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+    aria-valuemin="0" aria-valuemax="100" data-target="${warningPercent}" style="width: 0%;">
+    ${warningText}
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+    aria-valuemin="0" aria-valuemax="100" data-target="${dangerPercent}" style="width: 0%;">
+    ${dangerText}
+  </div>
+</div>
+`;
+
+  // Build the CSS snippet.
+  let cssSnippet = `
+.progress {
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.progress-bar {
+  height: ${progressBarHeight};
+  line-height: ${progressBarHeight};
+  font-family: ${progressBarFont};
+  font-size: ${progressBarFontSize};
+  color: ${progressBarFontColor};
+  text-align: center;
+  white-space: nowrap;
+  transition: width 0.6s ease;
+}
+.progress-bar-striped {
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}
+/* Custom colors */
+.progress-bar-success { background-color: ${successColor}; }
+.progress-bar-info { background-color: ${infoColor}; }
+.progress-bar-warning { background-color: ${warningColor}; }
+.progress-bar-danger { background-color: ${dangerColor}; }
+`;
+
+  // Build the JavaScript snippet to animate the progress bars.
+  // This snippet iterates each progress bar, increases the width from 0% to its target.
+  let jsSnippet = `(function(){
+  const bars = document.querySelectorAll('.progress-bar');
+  bars.forEach(bar => {
+    const target = parseInt(bar.getAttribute('data-target'));
+    let width = 0;
+    const animate = () => {
+      if(width < target) {
+        width++;
+        bar.style.width = width + '%';
+        setTimeout(animate, 10);
+      } else {
+        bar.textContent = target + '% Complete';
+      }
+    };
+    animate();
+  });
+})();`;
+
+  // Inject the CSS into your dynamic style tag.
+  document.getElementById("dynamicStyles").textContent = cssSnippet;
+
+  // Update the live view with the generated HTML snippet.
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = htmlSnippet;
+
+  // Execute the JavaScript snippet so the progress bars animate.
+  new Function(jsSnippet)();
+
+  // Update the code output areas for copy functionality.
+  document.getElementById("htmlCode").textContent = htmlSnippet;
+  document.getElementById("cssCode").textContent = cssSnippet;
+  const jsCodeBlock = document.getElementById("jsCode");
+  if (jsCodeBlock) {
+    jsCodeBlock.textContent = jsSnippet;
+  }
+}
+
+
+function generateCounter() {
+  // Read the number of counters to display (default to 3)
+  const countControl = document.getElementById("counterCount");
+  const numCounters = countControl ? parseInt(countControl.value) : 3;
+
+  // Create an array of counter objects
+  const counters = [];
+  for (let i = 1; i <= numCounters; i++) {
+    // Get target count with defaults: 300, 100, 39
+    const counttoInput = document.getElementById(`state${i}Count`);
+    const countto = counttoInput
+      ? parseInt(counttoInput.value)
+      : (i === 1 ? 300 : i === 2 ? 100 : 39);
+
+    // Get title text with defaults
+    const titleInput = document.getElementById(`state${i}Title`);
+    const title = titleInput
+      ? titleInput.value
+      : (i === 1 ? "Coded Elements" : i === 2 ? "Design Blocks" : "Pages");
+
+    // Get description text with defaults
+    const descInput = document.getElementById(`state${i}Desc`);
+    const desc = descInput
+      ? descInput.value
+      : (i === 1
+          ? "From buttons, to inputs, navbars, alerts or cards, you are covered"
+          : i === 2
+          ? "Mix the sections, change the colors and unleash your creativity"
+          : "Save 3-4 weeks of work when you use our pre-made pages for your website");
+    counters.push({ countto, title, desc });
+  }
+
+  // Read the counter number color (ensure this control exists)
+  const counterColorInput = document.getElementById("counterColor");
+  const counterColor = counterColorInput ? counterColorInput.value : "#4361ee";
+
+  // Read title styling controls
+  const titleFont = document.getElementById("counterTitleFont")
+    ? document.getElementById("counterTitleFont").value
+    : "'Poppins', sans-serif";
+  const titleFontSize = document.getElementById("counterTitleFontSize")
+    ? document.getElementById("counterTitleFontSize").value
+    : "2.5";
+  const titleColor = document.getElementById("counterTitleColor")
+    ? document.getElementById("counterTitleColor").value
+    : "#000000";
+
+  // Read description styling controls
+  const descFont = document.getElementById("counterDescFont")
+    ? document.getElementById("counterDescFont").value
+    : "'Poppins', sans-serif";
+  const descFontSize = document.getElementById("counterDescFontSize")
+    ? document.getElementById("counterDescFontSize").value
+    : "1";
+  const descColor = document.getElementById("counterDescColor")
+    ? document.getElementById("counterDescColor").value
+    : "#666666";
+
+  // Determine the appropriate column class based on the number of counters.
+  let colClass = "col-33"; // default for 3 counters
+  if (numCounters === 1) colClass = "col-100";
+  else if (numCounters === 2) colClass = "col-50";
+
+  // Build the HTML snippet for the counters section.
+  let htmlSnippet = `<section id="count-stats">
+    <div class="container">
+      <div class="stats-row">`;
+  counters.forEach((counter, index) => {
+    const spanId = `state${index + 1}`;
+    htmlSnippet += `
+        <div class="${colClass} stat-column">
+          <h1 class="text-gradient text-primary">
+            <span id="${spanId}" countto="${counter.countto}">0</span>+
+          </h1>
+          <h5>${counter.title}</h5>
+          <p class="text-sm">${counter.desc}</p>
+        </div>`;
+  });
+  htmlSnippet += `
+      </div>
+    </div>
+</section>`;
+
+  // Build the CSS snippet.
+  let cssSnippet = `
+#count-stats {
+  padding: 60px 0;
+  background-color: var(--bg-color);
+}
+#count-stats .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.stat-column {
+  text-align: center;
+  padding: 20px;
+}
+.col-33 { width: 33.33%; }
+.col-50 { width: 50%; }
+.col-100 { width: 100%; }
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-primary { color: var(--primary-color); }
+.text-sm { font-size: 0.9rem; color: #666; }
+
+/* Override counter number color */
+#count-stats .stat-column h1 span {
+  color: ${counterColor} !important;
+  /* Remove gradient settings from parent classes */
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: ${counterColor} !important;
+}
+
+/* Title styling for counter titles */
+#count-stats .stat-column h5 {
+  font-family: ${titleFont};
+  font-size: ${titleFontSize}rem;
+  color: ${titleColor};
+  margin: 10px 0 5px;
+}
+
+/* Description styling for counter descriptions */
+#count-stats .stat-column p.text-sm {
+  font-family: ${descFont};
+  font-size: ${descFontSize}rem;
+  color: ${descColor};
+}
+`;
+
+  // Build the JavaScript snippet to animate the counters.
+  const jsSnippet = `(function(){
+  const counters = document.querySelectorAll("#count-stats [countto]");
+  counters.forEach(counter => {
+    const target = +counter.getAttribute("countto");
+    let count = 0;
+    const increment = Math.ceil(target / 100);
+    const updateCount = () => {
+      count += increment;
+      if(count > target) count = target;
+      counter.textContent = count;
+      if(count < target) {
+        setTimeout(updateCount, 50);
+      }
+    };
+    updateCount();
+  });
+})();`;
+
+  // Inject the CSS into the dynamicStyles tag.
+  document.getElementById("dynamicStyles").textContent = cssSnippet;
+
+  // Update the live view with the generated HTML snippet.
+  const elementOutput = document.getElementById("elementOutput");
+  elementOutput.innerHTML = htmlSnippet;
+
+  // Execute the generated JavaScript so that the counters animate.
+  new Function(jsSnippet)();
+
+  // Update the code output areas.
+  document.getElementById("htmlCode").textContent = htmlSnippet;
+  document.getElementById("cssCode").textContent = cssSnippet;
+  const jsCodeBlock = document.getElementById("jsCode");
+  if (jsCodeBlock) {
+    jsCodeBlock.textContent = jsSnippet;
+  }
+}
+
+
+
+
+
 export {
   generateHeader,
   generateNavbar,
@@ -1283,4 +1772,7 @@ export {
   generateFlexContainer,
   generateInputField,
   generateHero,
+  generateModalPopup,
+  generateProgressBar,
+  generateCounter,
 };
