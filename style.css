@@ -406,22 +406,26 @@ header p {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Two-Column Layout */
+/* Two-Column Layout with 50/50 split */
 .customization-container {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   margin-top: 30px;
   animation: slideUpFade 0.6s 0.1s var(--ease-smooth) both;
 }
 
 .form-column {
-  flex: 1;
-  max-width: 400px;
+  width: 50%;
+  min-width: 0; /* Ensures proper flexbox behavior */
 }
 
 .output-column {
-  flex: 1;
-  margin-left: 75px;
+  width: 50%;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  max-height: calc(100vh - 100px);
+  min-width: 0; /* Ensures proper flexbox behavior */
 }
 
 /* Form Styles */
@@ -496,10 +500,13 @@ header p {
 
 /* Output Styles */
 .output {
-  margin-top: 20px;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: var(--box-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   transition: all 0.3s var(--ease-smooth);
   animation: fadeInStagger 0.6s 0.3s var(--ease-smooth) both;
-  position: relative;
 }
 
 .outputh3 {
@@ -509,30 +516,21 @@ header p {
 }
 
 #elementOutput {
-  background-color: var(--card-bg);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: var(--box-shadow);
   min-height: 100px;
-  max-width: 700px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow: auto;
 }
-
-/* Specific styling for different element types */
-/* Generated Headers */
-/* #elementOutput h1 {
-  background: none;
-  -webkit-text-fill-color: initial;
-  color: inherit;
-} */
 
 .code-output {
   margin-top: 30px;
   animation: fadeInStagger 0.6s 0.4s var(--ease-smooth) both;
   position: relative;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: var(--box-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .code-output h3 {
@@ -549,7 +547,7 @@ header p {
 }
 
 pre {
-  background-color: var(--card-bg);
+  background-color: var(--bg-color);
   padding: 20px;
   border-radius: 12px;
   overflow-x: auto;
@@ -559,6 +557,8 @@ pre {
   font-size: 0.9rem;
   line-height: 1.5;
   position: relative;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 pre::before {
@@ -694,12 +694,13 @@ button {
 
   .form-column,
   .output-column {
-    max-width: 100%;
+    width: 100%;
   }
 
   .output-column {
-    margin-left: 0;
-    margin-top: 40px;
+    position: static;
+    margin-top: 30px;
+    max-height: none;
   }
 
   h1 {
@@ -771,10 +772,3 @@ button {
 .animate.delay-2 {
   animation-delay: 0.2s;
 }
-
-/* Generated Output Overrides */
-/* #elementOutput h1 {
-  background: none;
-  -webkit-text-fill-color: initial;
-  color: inherit;
-} */
