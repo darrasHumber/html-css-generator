@@ -610,7 +610,7 @@ export function getElementControls(element) {
     </div>
   `;
   case "modalpopup":
-case "modalPopup":
+
   return `
     <!-- Basic Modal Content Controls -->
     <div class="form-group">
