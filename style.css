@@ -38,7 +38,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 2.5rem;
   opacity: 0;
@@ -420,12 +420,13 @@ header p {
 }
 
 .output-column {
-  width: 50%;
+  width: 100%;
   position: sticky;
   top: 20px;
   align-self: flex-start;
   max-height: calc(100vh - 100px);
   min-width: 0; /* Ensures proper flexbox behavior */
+  overflow-y: auto;
 }
 
 /* Form Styles */
