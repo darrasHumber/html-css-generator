@@ -417,6 +417,8 @@ header p {
 .form-column {
   width: 50%;
   min-width: 0; /* Ensures proper flexbox behavior */
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
 .output-column {
