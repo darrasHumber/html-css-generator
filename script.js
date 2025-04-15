@@ -147,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       case "hero":
         generateHero();
+        break;
       case "modalpopup":
         generateModalPopup();
         break;
