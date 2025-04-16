@@ -13,7 +13,10 @@ Generate ready-to-use code for:
 - **Cards** (Profile, Product, Blog Cards)  
 - **Flex Layouts** (Flexbox Templates)  
 - **Input Fields** (Labels, Placeholders, Help texts)  
-- **Hero Sections** (Main page, Layout style, Animation, Dark overlay)  
+- **Hero Sections** (Main page, Layout style, Animation, Dark overlay)
+- **Modal Popup** (Animated, Popup, Focus)
+- **Progress Bar** (Animated, Gradient, Smooth Transition)
+- **Counter** (Incremental, Animated)
 
 ## 🛠️ Built With  
 - **HTML**
