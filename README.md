@@ -2,6 +2,7 @@
 
 ### ⚡ Create Beautiful UI Components in Seconds
 
+<<<<<<< HEAD
 Tired of rewriting the same HTML/CSS for every project? **HTML & CSS Generator** is your go-to tool for instantly generating **clean, responsive, and customizable UI components**—so you can focus on building great websites.
 
 ## ✨ Features
@@ -19,6 +20,22 @@ Generate ready-to-use code for:
 - **Hero Sections** (Main page, Layout style, Animation, Dark overlay)
 
 ## 🛠️ Built With
+=======
+## ✨ Features  
+Generate ready-to-use code for:  
+- **Headers** (Header level, Hover effects)  
+- **Navbars** (Responsive, Sticky)  
+- **Buttons** (Hover Color, Shadows, Icon Buttons)  
+- **Footers** (Copyright, Minimalist)  
+- **Forms** (Textarea, Email)  
+- **Cards** (Profile, Product, Blog Cards)  
+- **Flex Layouts** (Flexbox Templates)  
+- **Input Fields** (Labels, Placeholders, Help texts)  
+- **Hero Sections** (Main page, Layout style, Animation, Dark overlay)
+- **Modal Popup** (Animated, Popup, Focus)
+- **Progress Bar** (Animated, Gradient, Smooth Transition)
+- **Counter** (Incremental, Animated)
+>>>>>>> 1f2e232abbb76bebe0716f3c94439588f33475ef
 
 - **HTML**
 - **CSS**
