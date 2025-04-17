@@ -20,17 +20,27 @@ Generate ready-to-use code for:
 - **Hero Sections** (Main page, Layout style, Animation, Dark overlay)
 
 ## 🛠️ Built With
-=======
-## ✨ Features  
-Generate ready-to-use code for:  
-- **Headers** (Header level, Hover effects)  
-- **Navbars** (Responsive, Sticky)  
-- **Buttons** (Hover Color, Shadows, Icon Buttons)  
-- **Footers** (Copyright, Minimalist)  
-- **Forms** (Textarea, Email)  
-- **Cards** (Profile, Product, Blog Cards)  
-- **Flex Layouts** (Flexbox Templates)  
-- **Input Fields** (Labels, Placeholders, Help texts)  
+
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **Libraries**:
+
+  - Typed.js for text animations
+  - Font Awesome for icons
+
+## ✨ Features
+
+Generate ready-to-use code for:
+
+- **Headers** (Header level, Hover effects)
+- **Navbars** (Responsive, Sticky)
+- **Buttons** (Hover Color, Shadows, Icon Buttons)
+- **Footers** (Copyright, Minimalist)
+- **Forms** (Textarea, Email)
+- **Cards** (Profile, Product, Blog Cards)
+- **Flex Layouts** (Flexbox Templates)
+- **Input Fields** (Labels, Placeholders, Help texts)
 - **Hero Sections** (Main page, Layout style, Animation, Dark overlay)
 - **Modal Popup** (Animated, Popup, Focus)
 - **Progress Bar** (Animated, Gradient, Smooth Transition)
