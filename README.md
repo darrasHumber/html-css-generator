@@ -35,7 +35,6 @@ Generate ready-to-use code for:
 - **Modal Popup** (Animated, Popup, Focus)
 - **Progress Bar** (Animated, Gradient, Smooth Transition)
 - **Counter** (Incremental, Animated)
->>>>>>> 1f2e232abbb76bebe0716f3c94439588f33475ef
 
 - **HTML**
 - **CSS**
