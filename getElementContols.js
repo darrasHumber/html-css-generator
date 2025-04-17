@@ -609,9 +609,8 @@ export function getElementControls(element) {
       <label for="heroAnimation">Add Animation Effect</label>
     </div>
   `;
-  case "modalpopup":
-
-  return `
+    case "modalpopup":
+      return `
     <!-- Basic Modal Content Controls -->
     <div class="form-group">
       <label for="openButtonText">Open Button Text:</label>
@@ -673,9 +672,8 @@ export function getElementControls(element) {
     </div>
   `;
 
-           
-  case "progressbar":
-  return `
+    case "progressbar":
+      return `
     <div class="form-group">
       <label for="progressBarHeight">Progress Bar Height (e.g., 25px):</label>
       <input type="text" id="progressBarHeight" value="25px">
@@ -756,8 +754,8 @@ export function getElementControls(element) {
     </div>
   `;
 
-  case "counter":
-    return `
+    case "counter":
+      return `
   <div class="form-group">
     <label for="counterCount">Number of Counters:</label>
     <select id="counterCount">
@@ -856,3 +854,5 @@ export function getElementControls(element) {
       return "";
   }
 }
+
+//Completed

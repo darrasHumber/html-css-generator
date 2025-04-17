@@ -16,7 +16,9 @@ import {
 // Copy to clipboard functionality
 function setupCopyButtons() {
   document.addEventListener("click", (e) => {
-    if (e.target.matches(".html-copy-button, .css-copy-button, .js-copy-button")) {
+    if (
+      e.target.matches(".html-copy-button, .css-copy-button, .js-copy-button")
+    ) {
       const targetId = e.target.getAttribute("data-target");
       const codeElement = document.getElementById(targetId);
 
@@ -106,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     elementOutput.innerHTML = "";
     htmlCode.textContent = "";
     cssCode.textContent = "";
-    jsCode.textContent="";
+    jsCode.textContent = "";
   }
 
   // Function to show the welcome page
@@ -172,9 +174,13 @@ document.addEventListener("DOMContentLoaded", () => {
     showCustomizationPage("input-field")
   );
   heroCard.addEventListener("click", () => showCustomizationPage("hero"));
-  progressBarCard.addEventListener("click", () => showCustomizationPage("progressbar"));
+  progressBarCard.addEventListener("click", () =>
+    showCustomizationPage("progressbar")
+  );
   counterCard.addEventListener("click", () => showCustomizationPage("counter"));
-  modalPopupCard.addEventListener("click", () => showCustomizationPage("modalpopup"));
+  modalPopupCard.addEventListener("click", () =>
+    showCustomizationPage("modalpopup")
+  );
 
   // Event listener for back button
   backButton.addEventListener("click", showWelcomePage);
@@ -184,9 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
   elementControls.addEventListener("change", generateElement);
 
   const typed = new Typed("header p", {
-    strings: [
-      "Create beautiful UI components in seconds",
-    ],
+    strings: ["Create beautiful UI components in seconds"],
     typeSpeed: 80,
     startDelay: 1500,
     backDelay: 2000,
@@ -224,3 +228,4 @@ document.addEventListener("DOMContentLoaded", () => {
     card.classList.add("animate__animated", "animate__fadeInUp");
   });
 });
+//Completed

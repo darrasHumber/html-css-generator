@@ -1276,25 +1276,38 @@ function generateHero() {
 
 function generateModalPopup() {
   // Retrieve basic content controls
-  const openButtonText = document.getElementById("openButtonText")?.value || "Open Modal";
-  const modalContent = document.getElementById("modalContent")?.value || "This is a modal popup! You can place any content here.";
-  
+  const openButtonText =
+    document.getElementById("openButtonText")?.value || "Open Modal";
+  const modalContent =
+    document.getElementById("modalContent")?.value ||
+    "This is a modal popup! You can place any content here.";
+
   // Retrieve open button styling controls
-  const openButtonBgColor = document.getElementById("modalOpenButtonBgColor")?.value || "var(--primary-color)";
-  const openButtonFontColor = document.getElementById("modalOpenButtonFontColor")?.value || "#ffffff";
-  const openButtonFontSize = document.getElementById("modalOpenButtonFontSize")?.value || "1rem";
-  
+  const openButtonBgColor =
+    document.getElementById("modalOpenButtonBgColor")?.value ||
+    "var(--primary-color)";
+  const openButtonFontColor =
+    document.getElementById("modalOpenButtonFontColor")?.value || "#ffffff";
+  const openButtonFontSize =
+    document.getElementById("modalOpenButtonFontSize")?.value || "1rem";
+
   // Retrieve modal overlay styling
   const useGradientOverlay = document.getElementById("modalGradient")?.checked;
   // If gradient is enabled, use gradient colors; otherwise, use flat color
-  const modalBgColor = useGradientOverlay 
-    ? `linear-gradient(135deg, ${document.getElementById("modalGradientStart")?.value || "#000000"}, ${document.getElementById("modalGradientEnd")?.value || "#333333"})`
-    : (document.getElementById("modalBgColor")?.value || "rgba(0,0,0,0.5)");
-  
+  const modalBgColor = useGradientOverlay
+    ? `linear-gradient(135deg, ${
+        document.getElementById("modalGradientStart")?.value || "#000000"
+      }, ${document.getElementById("modalGradientEnd")?.value || "#333333"})`
+    : document.getElementById("modalBgColor")?.value || "rgba(0,0,0,0.5)";
+
   // Retrieve modal content styling controls
-  const modalContentBgColor = document.getElementById("modalContentBgColor")?.value || "#fefefe";
-  const modalContentFont = document.getElementById("modalContentFont")?.value || "'Poppins', sans-serif";
-  const modalContentFontColor = document.getElementById("modalContentFontColor")?.value || "#333333";
+  const modalContentBgColor =
+    document.getElementById("modalContentBgColor")?.value || "#fefefe";
+  const modalContentFont =
+    document.getElementById("modalContentFont")?.value ||
+    "'Poppins', sans-serif";
+  const modalContentFontColor =
+    document.getElementById("modalContentFontColor")?.value || "#333333";
 
   // Build the HTML snippet with a button and a modal container.
   // Note: Adding a div with class "modal-inner-content" inside the modal-content for the text.
@@ -1307,7 +1320,7 @@ function generateModalPopup() {
   </div>
 </div>
   `.trim();
-  
+
   // Build the CSS snippet.
   const cssSnippet = `
 /* Modal Overlay */
@@ -1381,7 +1394,7 @@ function generateModalPopup() {
   to { opacity: 1; }
 }
   `.trim();
-  
+
   // Build the JS snippet to attach events with a slight delay.
   const jsSnippet = `
 setTimeout(function(){
@@ -1403,17 +1416,17 @@ setTimeout(function(){
   }
 }, 50);
   `.trim();
-  
+
   // Inject the CSS into the dynamic style tag.
   document.getElementById("dynamicStyles").textContent = cssSnippet;
-  
+
   // Update the live view with the generated HTML.
   const elementOutput = document.getElementById("elementOutput");
   elementOutput.innerHTML = htmlSnippet;
-  
+
   // Execute the JavaScript to attach event listeners.
   new Function(jsSnippet)();
-  
+
   // Update the code output areas for copy functionality.
   document.getElementById("htmlCode").textContent = htmlSnippet;
   document.getElementById("cssCode").textContent = cssSnippet;
@@ -1422,8 +1435,6 @@ setTimeout(function(){
     jsCodeBlock.textContent = jsSnippet;
   }
 }
-
-
 
 function generateProgressBar() {
   // Read common styling controls
@@ -1581,7 +1592,6 @@ function generateProgressBar() {
   }
 }
 
-
 function generateCounter() {
   // Read the number of counters to display (default to 3)
   const countControl = document.getElementById("counterCount");
@@ -1594,23 +1604,31 @@ function generateCounter() {
     const counttoInput = document.getElementById(`state${i}Count`);
     const countto = counttoInput
       ? parseInt(counttoInput.value)
-      : (i === 1 ? 300 : i === 2 ? 100 : 39);
+      : i === 1
+      ? 300
+      : i === 2
+      ? 100
+      : 39;
 
     // Get title text with defaults
     const titleInput = document.getElementById(`state${i}Title`);
     const title = titleInput
       ? titleInput.value
-      : (i === 1 ? "Coded Elements" : i === 2 ? "Design Blocks" : "Pages");
+      : i === 1
+      ? "Coded Elements"
+      : i === 2
+      ? "Design Blocks"
+      : "Pages";
 
     // Get description text with defaults
     const descInput = document.getElementById(`state${i}Desc`);
     const desc = descInput
       ? descInput.value
-      : (i === 1
-          ? "From buttons, to inputs, navbars, alerts or cards, you are covered"
-          : i === 2
-          ? "Mix the sections, change the colors and unleash your creativity"
-          : "Save 3-4 weeks of work when you use our pre-made pages for your website");
+      : i === 1
+      ? "From buttons, to inputs, navbars, alerts or cards, you are covered"
+      : i === 2
+      ? "Mix the sections, change the colors and unleash your creativity"
+      : "Save 3-4 weeks of work when you use our pre-made pages for your website";
     counters.push({ countto, title, desc });
   }
 
@@ -1758,10 +1776,6 @@ function generateCounter() {
   }
 }
 
-
-
-
-
 export {
   generateHeader,
   generateNavbar,
@@ -1776,3 +1790,5 @@ export {
   generateProgressBar,
   generateCounter,
 };
+
+//Completed
