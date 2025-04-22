@@ -17,6 +17,9 @@ Generate ready-to-use code for:
 - **Flex Layouts** (Flexbox Templates)
 - **Input Fields** (Labels, Placeholders, Help texts)
 - **Hero Sections** (Main page, Layout style, Animation, Dark overlay)
+- **Modal Popup** (Animated, Popup, Focus)
+- **Progress Bar** (Animated, Gradient, Smooth Transition)
+- **Counter** (Incremental, Animated)
 
 ## 🛠️ Built With
 
@@ -28,27 +31,6 @@ Generate ready-to-use code for:
   - Typed.js for text animations
   - Font Awesome for icons
 
-## ✨ Features
-
-Generate ready-to-use code for:
-
-- **Headers** (Header level, Hover effects)
-- **Navbars** (Responsive, Sticky)
-- **Buttons** (Hover Color, Shadows, Icon Buttons)
-- **Footers** (Copyright, Minimalist)
-- **Forms** (Textarea, Email)
-- **Cards** (Profile, Product, Blog Cards)
-- **Flex Layouts** (Flexbox Templates)
-- **Input Fields** (Labels, Placeholders, Help texts)
-- **Hero Sections** (Main page, Layout style, Animation, Dark overlay)
-- **Modal Popup** (Animated, Popup, Focus)
-- **Progress Bar** (Animated, Gradient, Smooth Transition)
-- **Counter** (Incremental, Animated)
-
-- **HTML**
-- **CSS**
-- **JavaScript**
-
 ## 👥 Contributors
 
 - [Mohammed Darras](https://github.com/darrasHumber)
@@ -57,10 +39,10 @@ Generate ready-to-use code for:
 
 ---
 
-## [Live Demo](https://darrashumber.github.io/geo-quiz/)
+## [Live Demo](https://darrashumber.github.io/html-css-generator/)
 
 ![HTML/CSS Screenshot](./image.png)
 
 ## Project Demo
 
-[Watch the video](https://www.youtube.com/watch?v=IeAq48NwnbM)
+[Watch The Video](https://www.youtube.com/watch?v=IeAq48NwnbM)
