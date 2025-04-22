@@ -2,7 +2,6 @@
 
 ### ⚡ Create Beautiful UI Components in Seconds
 
-<<<<<<< HEAD
 Tired of rewriting the same HTML/CSS for every project? **HTML & CSS Generator** is your go-to tool for instantly generating **clean, responsive, and customizable UI components**—so you can focus on building great websites.
 
 ## ✨ Features
@@ -58,11 +57,10 @@ Generate ready-to-use code for:
 
 ---
 
-### 🚀 How to Use
+## [Live Demo](https://darrashumber.github.io/geo-quiz/)
 
-**Clone the repo!**
+![HTML/CSS Screenshot](./image.png)
 
-```bash
-git clone "https://github.com/darrasHumber/html-css-generator.git"
+## Project Demo
 
-```
+[Watch the video](https://www.youtube.com/watch?v=IeAq48NwnbM)
